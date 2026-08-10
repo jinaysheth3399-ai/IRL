@@ -13,18 +13,17 @@ export const site = {
   whatsappNumber: '919800000000',
   // PLACEHOLDER: office email.
   email: 'hello@irltravel.in',
-  // PLACEHOLDER: full office address.
-  address: 'Office address, Rajarampuri, Kolhapur, Maharashtra 416008',
+  address: '334, Office No. 2A, 2nd Floor, Trade Center, Station Road, Kolhapur 416001',
   timings: 'Monday to Sunday, 10 am to 8 pm',
-  landmarkLine: 'Nearest landmarks: to be added. Parking available. Walk-ins welcome, no appointment needed.',
+  landmarkLine: 'We are in Trade Center on Station Road, 2nd floor. Walk-ins welcome, no appointment needed.',
 
   // PLACEHOLDER: social links.
   instagram: 'https://instagram.com/',
   facebook: 'https://facebook.com/',
   youtube: 'https://youtube.com/',
 
-  // PLACEHOLDER: Google Maps embed query for the office.
-  mapsQuery: 'Rajarampuri, Kolhapur, Maharashtra',
+  // Drives the footer map link and the embedded map on Contact.
+  mapsQuery: 'Trade Center, Station Road, Kolhapur, Maharashtra 416001',
 
   bottomLine: 'IRL is a Kolhapur based travel company. Every trip is planned by a real person, not an app.',
 };

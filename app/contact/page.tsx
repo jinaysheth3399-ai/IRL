@@ -91,7 +91,7 @@ export default function ContactPage() {
             <i className="corner bl" aria-hidden="true" />
             <i className="corner br" aria-hidden="true" />
             <div className="frame">
-              <span className="map-cover">IRL office · Rajarampuri, Kolhapur</span>
+              <span className="map-cover">IRL office · Station Road, Kolhapur</span>
               <iframe
                 src={`https://maps.google.com/maps?q=${encodeURIComponent(site.mapsQuery)}&output=embed&iwloc=near`}
                 title="IRL office on Google Maps"

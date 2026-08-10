@@ -43,7 +43,7 @@ The website of IRL (In Real Life), a Kolhapur travel company selling India and i
 ## Brand Commitments
 
 - Name: IRL (In Real Life). Tagline: "We plan. You travel." Subline: "Holiday packages from Kolhapur to all of India and the world. Tell us your budget. We build your trip."
-- PLACEHOLDER contacts (owner will fill; keep in one config constant `lib/site.ts`): phone, WhatsApp number, email, full office address, Instagram/Facebook/YouTube links, Google Maps location. Timings are real: Monday to Sunday, 10 am to 8 pm.
+- Contacts live in one config constant, `lib/site.ts`. Real as of 2026-08-10: the office address (334, Office No. 2A, 2nd Floor, Trade Center, Station Road, Kolhapur 416001), the Google Maps location derived from it, and the timings (Monday to Sunday, 10 am to 8 pm). Still PLACEHOLDER, owner to fill: phone, WhatsApp number, email, Instagram/Facebook/YouTube links.
 - Voice: simple English, short sentences, no jargon, NO EM DASHES anywhere in copy or UI text. The site is English only: the owner removed all Marathi copy on 2026-08-10, so do not reintroduce it. Button labels from the copy doc: Plan My Trip on WhatsApp | Get My Price | See All Trips | Start Planning Now | Chat With Us.
 - SEO title pattern: "[Destination] Tour Package from Kolhapur | [Duration] | IRL" (no prices in metas).
 - Logo (supplied 2026-08-08, binding): black "IRL" wordmark, warm off-white panel, chartreuse lime paper-plane with contrail, "IN REAL LIFE" letterspaced. The site palette is pinned to it: near-black night ground, warm paper, lime accent, plus harmonizing supports (olive-gray secondary text, deep leaf green for green text on paper). User confirmed extra harmonizing colors are welcome. Logo file itself not yet in repo; owner to supply.
