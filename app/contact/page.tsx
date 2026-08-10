@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { WaButton, IconPhone } from '@/components/ui';
 import { site, defaultWaMessage } from '@/lib/site';
-import { ContactForm } from '@/components/contact-form';
+import { EnquiryForm } from '@/components/enquiry-form';
 
 export const metadata: Metadata = {
   title: 'Contact IRL Kolhapur',
@@ -108,8 +108,8 @@ export default function ContactPage() {
         <div className="container">
           <div className="note" style={{ maxWidth: '40rem', marginInline: 'auto', padding: '2rem 1.75rem 1.75rem' }}>
             <i className="tape" aria-hidden="true" />
-            <h2 style={{ fontSize: '1.5rem', marginBottom: '1.1rem' }}>Or write to us here.</h2>
-            <ContactForm />
+            <h2 style={{ fontSize: '1.5rem', marginBottom: '1.1rem' }}>Or tell us your trip here.</h2>
+            <EnquiryForm source="contact" />
           </div>
         </div>
       </section>
