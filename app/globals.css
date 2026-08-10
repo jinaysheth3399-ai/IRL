@@ -1,0 +1,1381 @@
+/* IRL: Night Flight.
+   World pinned by the brand logo: near-black night, warm paper, chartreuse lime plane.
+   Boarding-pass cards, punched edges, dashed lime flight paths, mono ticket data.
+   No prices anywhere. WhatsApp deep green appears only on WhatsApp actions. */
+
+:root {
+  --night: #0b0d09;
+  --night-soft: #151812;
+  --night-panel: #1c2018;
+  --paper: #f3efe6;
+  --paper-dim: #e8e2d2;
+  --ink: #14130e;
+  --ink-soft: #6f6a58;
+  --lime: #a6d420;
+  --lime-bright: #b8e832;
+  --leaf: #4a7000;
+  --cloud: #cfcaba;
+  --wa-green: #0e7d43;
+  --wa-green-deep: #0a6635;
+  --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.5), 0 2px 6px rgba(0, 0, 0, 0.4);
+  --shadow-lift: 0 18px 44px rgba(0, 0, 0, 0.65), 0 4px 12px rgba(0, 0, 0, 0.45);
+  --container: 1180px;
+
+  /* Warm paper grain, applied to every paper surface */
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='table' tableValues='0 0.055'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23g)' fill='%233a3222'/%3E%3C/svg%3E");
+
+  /* Legacy album-token aliases, mapped into Night Flight so older inline styles stay coherent */
+  --marigold: var(--lime);
+  --kumkum: var(--leaf);
+  --kumkum-deep: var(--leaf);
+  --cream: var(--paper);
+  --cream-soft: var(--cloud);
+  --velvet: var(--night);
+  --velvet-deep: var(--night);
+  --velvet-soft: var(--night-panel);
+  --gold: var(--lime);
+  --paper-warm: var(--paper-dim);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body), 'Segoe UI', sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  color: var(--paper);
+  background-color: var(--night);
+  background-image:
+    radial-gradient(1100px 520px at 80% -180px, rgba(166, 212, 32, 0.07), transparent 60%),
+    radial-gradient(1.2px 1.2px at 22% 34%, rgba(243, 239, 230, 0.16) 50%, transparent 51%),
+    radial-gradient(1.2px 1.2px at 68% 12%, rgba(243, 239, 230, 0.12) 50%, transparent 51%),
+    radial-gradient(1.4px 1.4px at 44% 72%, rgba(243, 239, 230, 0.1) 50%, transparent 51%),
+    radial-gradient(1px 1px at 88% 58%, rgba(243, 239, 230, 0.14) 50%, transparent 51%);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--lime);
+  color: var(--night);
+}
+
+input,
+select,
+textarea {
+  caret-color: var(--leaf);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #3a4030 var(--night);
+}
+::-webkit-scrollbar {
+  width: 12px;
+}
+::-webkit-scrollbar-track {
+  background: var(--night);
+}
+::-webkit-scrollbar-thumb {
+  background: #3a4030;
+  border: 3px solid var(--night);
+  border-radius: 8px;
+}
+
+:focus-visible {
+  outline: 3px solid var(--lime);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: var(--lime);
+  text-decoration-color: rgba(166, 212, 32, 0.5);
+  text-underline-offset: 4px;
+}
+
+a:hover {
+  text-decoration-color: var(--lime);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display), sans-serif;
+  font-weight: 900;
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  color: var(--paper);
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: clamp(2.7rem, 7vw, 5.4rem);
+}
+
+h2 {
+  font-size: clamp(1.8rem, 3.8vw, 2.9rem);
+}
+
+h3 {
+  font-size: clamp(1.15rem, 2.2vw, 1.45rem);
+  letter-spacing: -0.01em;
+}
+
+p {
+  max-width: 68ch;
+}
+
+.container {
+  width: min(var(--container), 100% - 2.5rem);
+  margin-inline: auto;
+}
+
+.section {
+  padding-block: clamp(3.5rem, 8vw, 6.5rem) 0;
+}
+
+.section:last-child {
+  padding-bottom: clamp(3.5rem, 8vw, 6.5rem);
+}
+
+/* ---- Section heading with runway rule ---- */
+
+.section-head {
+  margin-bottom: clamp(1.75rem, 4vw, 2.75rem);
+}
+
+.section-head h2 {
+  margin-bottom: 0.5rem;
+}
+
+.section-head .rule {
+  width: 132px;
+  height: 4px;
+  margin-top: 1rem;
+  background: repeating-linear-gradient(90deg, var(--lime) 0 14px, transparent 14px 24px);
+  border-radius: 2px;
+}
+
+.section-head .lead {
+  color: var(--cloud);
+  margin-top: 0.4rem;
+}
+
+/* Ticket data voice: mono */
+.hand {
+  font-family: var(--font-hand), monospace;
+  letter-spacing: 0.04em;
+}
+
+/* ---- Photo card: window view in a paper frame, mono log caption ---- */
+
+.print {
+  position: relative;
+  display: block;
+  background-color: var(--paper);
+  background-image: var(--grain), linear-gradient(160deg, rgba(255, 252, 244, 0.6), rgba(214, 205, 180, 0.25));
+  padding: 9px 9px 11px;
+  border-radius: 10px;
+  box-shadow: var(--shadow-card);
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.print .frame {
+  position: relative;
+  overflow: hidden;
+  border-radius: 6px;
+  background: var(--night-soft);
+}
+
+.print img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Corner ticks, drawn in the flight-plan grammar */
+.print .corner {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  z-index: 2;
+  border-style: solid;
+  border-color: var(--leaf);
+  border-width: 0;
+  opacity: 0.85;
+}
+
+.print .corner.tl { top: 5px; left: 5px; border-top-width: 2px; border-left-width: 2px; }
+.print .corner.tr { top: 5px; right: 5px; border-top-width: 2px; border-right-width: 2px; }
+.print .corner.bl { bottom: 7px; left: 5px; border-bottom-width: 2px; border-left-width: 2px; }
+.print .corner.br { bottom: 7px; right: 5px; border-bottom-width: 2px; border-right-width: 2px; }
+
+.print .caption {
+  font-family: var(--font-hand), monospace;
+  color: var(--ink-soft);
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1.35;
+  padding: 9px 4px 2px;
+  text-align: left;
+}
+
+a.print-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+a.print-link:hover .print,
+a.print-link:focus-visible .print {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lift);
+}
+
+a.print-link:hover .caption {
+  color: var(--leaf);
+}
+
+/* ---- Boarding-pass trip card meta strip ---- */
+
+.pass-meta {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.15rem 0.6rem;
+  align-items: center;
+  padding: 0.7rem 0.35rem 0.25rem;
+  border-top: 1px dashed rgba(20, 19, 14, 0.3);
+  margin-top: 0.6rem;
+}
+
+.pass-route {
+  grid-column: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--leaf);
+}
+
+.pass-duration {
+  grid-column: 2;
+  grid-row: 1;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--ink-soft);
+}
+
+.pass-name {
+  grid-column: 1 / -1;
+  font-family: var(--font-display), sans-serif;
+  font-weight: 800;
+  font-size: 1.18rem;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  line-height: 1.15;
+}
+
+/* ---- Clear tape, kept quiet ---- */
+
+.tape {
+  position: absolute;
+  width: 86px;
+  height: 22px;
+  background: rgba(243, 239, 230, 0.35);
+  border-inline: 1px solid rgba(243, 239, 230, 0.5);
+  z-index: 3;
+}
+
+/* ---- Boarding stub: paper strip with punched edge ---- */
+
+.stub {
+  position: relative;
+  background-color: var(--paper);
+  background-image: var(--grain), linear-gradient(105deg, rgba(255, 252, 244, 0.55), rgba(214, 205, 180, 0.3));
+  color: var(--ink);
+  padding: 0.85rem 1.2rem 0.85rem 1.9rem;
+  font-weight: 600;
+  font-size: 0.98rem;
+  line-height: 1.45;
+  border-radius: 8px;
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+.stub::before {
+  content: '';
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 1.1rem;
+  background:
+    radial-gradient(circle 3px at 0.55rem 50%, var(--night) 2.7px, transparent 3.2px);
+  background-size: 1.1rem 14px;
+  background-repeat: repeat-y;
+  border-right: 1px dashed rgba(20, 19, 14, 0.35);
+}
+
+.stub .stub-label {
+  display: block;
+  font-family: var(--font-hand), monospace;
+  font-weight: 700;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--leaf);
+}
+
+/* ---- Paper note card ---- */
+
+.note {
+  position: relative;
+  background-color: var(--paper);
+  background-image: var(--grain), linear-gradient(150deg, rgba(255, 252, 244, 0.5), rgba(214, 205, 180, 0.28));
+  color: var(--ink);
+  padding: 1.5rem 1.6rem 1.4rem;
+  border-radius: 10px;
+  border: 1px solid rgba(20, 19, 14, 0.18);
+  box-shadow: var(--shadow-card);
+}
+
+.note h3,
+.note h2 {
+  color: var(--ink);
+}
+
+.note p {
+  color: var(--ink);
+}
+
+.note .tape {
+  top: -11px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-1.5deg);
+}
+
+/* Tape varies card to card, like a hand placed it */
+.grid-3 > *:nth-child(3n + 2) .tape {
+  transform: translateX(-58%) rotate(2.2deg);
+  width: 68px;
+  background: rgba(243, 239, 230, 0.28);
+}
+
+.grid-3 > *:nth-child(3n) .tape {
+  transform: translateX(-42%) rotate(-3deg);
+  width: 98px;
+  background: rgba(226, 219, 198, 0.4);
+}
+
+.grid-2 > *:nth-child(even) .tape {
+  transform: translateX(-55%) rotate(2.6deg);
+  width: 74px;
+}
+
+/* ---- Buttons ---- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-body), sans-serif;
+  font-weight: 700;
+  font-size: 1.02rem;
+  line-height: 1.2;
+  padding: 0.95rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.25s ease-out, box-shadow 0.25s ease-out, background-color 0.25s ease-out;
+  min-height: 48px;
+}
+
+.btn svg {
+  flex: none;
+}
+
+.btn-wa {
+  background: var(--wa-green);
+  color: var(--paper);
+  box-shadow: 0 6px 18px rgba(6, 60, 30, 0.5);
+}
+
+.btn-wa:hover {
+  background: var(--wa-green-deep);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(6, 60, 30, 0.6);
+}
+
+.btn-primary {
+  background: var(--lime);
+  color: var(--night);
+  box-shadow: 0 6px 18px rgba(166, 212, 32, 0.22);
+}
+
+.btn-primary:hover {
+  background: var(--lime-bright);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 26px rgba(166, 212, 32, 0.3);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--paper);
+  box-shadow: inset 0 0 0 2px rgba(243, 239, 230, 0.55);
+}
+
+.btn-ghost:hover {
+  box-shadow: inset 0 0 0 2px var(--paper);
+  transform: translateY(-2px);
+  color: var(--paper);
+}
+
+/* ---- Route chips (good-for tags) ---- */
+
+.tag {
+  display: inline-block;
+  font-family: var(--font-hand), monospace;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--paper);
+  border: 1px solid rgba(243, 239, 230, 0.45);
+  border-radius: 999px;
+  padding: 0.28rem 0.75rem;
+}
+
+.note .tag {
+  color: var(--ink);
+  border-color: rgba(20, 19, 14, 0.4);
+}
+
+/* ---- Diary day list ---- */
+
+.diary {
+  list-style: none;
+  color: var(--ink);
+}
+
+.diary li {
+  display: flex;
+  gap: 0.9rem;
+  padding: 0.55rem 0;
+  border-bottom: 1px dashed rgba(20, 19, 14, 0.28);
+  align-items: baseline;
+}
+
+.diary li:last-child {
+  border-bottom: none;
+}
+
+.diary .d {
+  font-family: var(--font-hand), monospace;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--leaf);
+  white-space: nowrap;
+}
+
+/* ---- Inclusion / exclusion lists ---- */
+
+.list-plain {
+  list-style: none;
+}
+
+.list-plain li {
+  display: flex;
+  gap: 0.65rem;
+  align-items: baseline;
+  padding-block: 0.32rem;
+}
+
+.list-plain svg {
+  flex: none;
+  transform: translateY(2px);
+}
+
+/* ---- Header ---- */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 70;
+  background: var(--night);
+  border-bottom: 1px solid rgba(166, 212, 32, 0.35);
+}
+
+/* Translucent only where the browser can actually blur what passes beneath;
+   the hero photo and starfield scroll under this bar, so it has to stay readable. */
+@supports (backdrop-filter: blur(12px)) or (-webkit-backdrop-filter: blur(12px)) {
+  .site-header {
+    background: rgba(11, 13, 9, 0.82);
+    -webkit-backdrop-filter: blur(12px) saturate(1.2);
+    backdrop-filter: blur(12px) saturate(1.2);
+  }
+}
+
+/* The bar stays above its own scrim so the brand and actions never dim behind it. */
+.site-header > .container {
+  position: relative;
+  z-index: 2;
+}
+
+.site-header .bar {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding-block: 0.75rem;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.brand-mark {
+  height: 34px;
+  width: auto;
+  display: block;
+}
+
+.brand-mark-footer {
+  height: 44px;
+}
+
+.brand .tag-line {
+  font-family: var(--font-hand), monospace;
+  color: var(--cloud);
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* The tagline is the first thing to go: below this the nav row needs the width,
+   and the hero says the same line louder. */
+@media (max-width: 1219px) {
+  .brand .tag-line {
+    display: none;
+  }
+}
+
+/* Desktop nav: each link carries its own contrail. The dashed lime rule is the
+   flight path at small scale, drawn from the left on hover and parked under the
+   current page. */
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.1rem;
+  margin-left: auto;
+}
+
+.site-nav a {
+  position: relative;
+  white-space: nowrap;
+  text-decoration: none;
+  color: var(--paper);
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.5rem 0.6rem;
+  border-radius: 6px;
+  transition: color 0.25s ease-out, background-color 0.25s ease-out;
+}
+
+.site-nav a::after {
+  content: '';
+  position: absolute;
+  left: 0.6rem;
+  right: 0.6rem;
+  bottom: 0.16rem;
+  height: 2px;
+  background-image: repeating-linear-gradient(90deg, var(--lime) 0 6px, transparent 6px 13px);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.42s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.site-nav a:hover {
+  background: rgba(166, 212, 32, 0.14);
+}
+
+.site-nav a:hover::after,
+.site-nav a:focus-visible::after {
+  transform: scaleX(1);
+}
+
+.site-nav a[aria-current='page'] {
+  color: var(--lime);
+}
+
+.site-nav a[aria-current='page']::after {
+  transform: scaleX(1);
+}
+
+.bar-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-shrink: 0;
+}
+
+.nav-wa {
+  padding: 0.55rem 1rem;
+  min-height: 0;
+}
+
+/* The hamburger and the drawer it opens belong to the narrow layout only. */
+
+.nav-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: transparent;
+  border: 1px solid rgba(166, 212, 32, 0.35);
+  border-radius: 8px;
+  color: var(--paper);
+  cursor: pointer;
+  transition: border-color 0.25s ease-out, background-color 0.25s ease-out;
+}
+
+.nav-toggle:hover {
+  background: rgba(166, 212, 32, 0.14);
+  border-color: var(--lime);
+}
+
+.nav-toggle-bars {
+  position: relative;
+  display: block;
+  width: 20px;
+  height: 14px;
+}
+
+.nav-toggle-bars i {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  border-radius: 999px;
+  background: currentColor;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease-out;
+}
+
+.nav-toggle-bars i:nth-child(1) {
+  top: 0;
+}
+.nav-toggle-bars i:nth-child(2) {
+  top: 6px;
+}
+.nav-toggle-bars i:nth-child(3) {
+  top: 12px;
+}
+
+.menu-open .nav-toggle {
+  color: var(--lime);
+  border-color: var(--lime);
+}
+
+.menu-open .nav-toggle-bars i:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+.menu-open .nav-toggle-bars i:nth-child(2) {
+  opacity: 0;
+}
+.menu-open .nav-toggle-bars i:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+/* Anchored to the header, not the viewport: the header's backdrop-filter makes it
+   the containing block, so a fixed scrim would clamp to the bar itself. */
+.nav-scrim {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  background: rgba(11, 13, 9, 0.72);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-out, visibility 0s linear 0.3s;
+}
+
+.menu-open .nav-scrim {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s ease-out, visibility 0s;
+}
+
+/* Drawer: a departure list. One row per destination, perforated rules between,
+   route code on the right, the lime plane parked on the current page. */
+
+.nav-drawer {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  max-height: calc(100dvh - 100%);
+  overflow-y: auto;
+  padding: 0.5rem 0 1.25rem;
+  background: var(--night-soft);
+  border-bottom: 1px solid rgba(166, 212, 32, 0.35);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.65);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: opacity 0.32s ease-out, transform 0.42s cubic-bezier(0.16, 1, 0.3, 1),
+    visibility 0s linear 0.42s;
+}
+
+.menu-open .nav-drawer {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition: opacity 0.32s ease-out, transform 0.42s cubic-bezier(0.16, 1, 0.3, 1), visibility 0s;
+}
+
+.drawer-nav {
+  display: flex;
+  flex-direction: column;
+  width: min(var(--container), 100% - 2.5rem);
+  margin-inline: auto;
+}
+
+.drawer-nav a {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 56px;
+  padding: 0.2rem 0.25rem;
+  text-decoration: none;
+  color: var(--paper);
+  font-family: var(--font-display), sans-serif;
+  font-weight: 800;
+  font-size: clamp(1.15rem, 2.2vw, 1.45rem);
+  border-bottom: 1px dashed rgba(207, 202, 186, 0.25);
+}
+
+.drawer-nav a:last-child {
+  border-bottom: 0;
+}
+
+.drawer-nav a[aria-current='page'] {
+  color: var(--lime);
+}
+
+.drawer-code {
+  margin-left: auto;
+  color: var(--cloud);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+}
+
+.drawer-nav a[aria-current='page'] .drawer-code {
+  color: var(--lime);
+}
+
+.drawer-actions {
+  width: min(var(--container), 100% - 2.5rem);
+  margin: 1.1rem auto 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.85rem;
+}
+
+.drawer-actions .btn-wa {
+  width: 100%;
+  justify-content: center;
+}
+
+.drawer-phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 48px;
+  color: var(--paper);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.drawer-hours {
+  color: var(--cloud);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* The full nav row stops fitting beside the brand and the WhatsApp action here. */
+@media (max-width: 1023px) {
+  .site-nav {
+    display: none;
+  }
+  .nav-toggle {
+    display: inline-flex;
+  }
+  .bar-actions {
+    margin-left: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-wa-label {
+    display: none;
+  }
+  .nav-wa {
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    justify-content: center;
+  }
+}
+
+/* ---- Announcement bar ---- */
+
+.announce {
+  background: var(--lime);
+  color: var(--night);
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  height: 2.3rem;
+}
+
+.announce span {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-inline: 1rem;
+  opacity: 0;
+  animation: announce-swap 16s infinite;
+}
+
+.announce span:nth-child(2) {
+  animation-delay: 8s;
+}
+
+@media (max-width: 640px) {
+  .announce {
+    height: 3.1rem;
+    font-size: 0.85rem;
+    line-height: 1.25;
+  }
+}
+
+@keyframes announce-swap {
+  0% { opacity: 0; transform: translateY(8px); }
+  3% { opacity: 1; transform: translateY(0); }
+  47% { opacity: 1; transform: translateY(0); }
+  50% { opacity: 0; transform: translateY(-8px); }
+  100% { opacity: 0; }
+}
+
+/* ---- Floating WhatsApp ---- */
+
+.float-wa {
+  position: fixed;
+  right: 1.1rem;
+  bottom: 1.1rem;
+  z-index: 60;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  background: var(--wa-green);
+  color: var(--paper);
+  font-weight: 700;
+  padding: 0.8rem 1.15rem;
+  border-radius: 999px;
+  text-decoration: none;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.55);
+  transition: transform 0.25s ease-out, background-color 0.25s ease-out;
+}
+
+.float-wa {
+  transition: transform 0.3s ease-out, opacity 0.3s ease-out, background-color 0.25s ease-out;
+}
+
+.float-wa:hover {
+  background: var(--wa-green-deep);
+  transform: translateY(-3px);
+}
+
+@media (max-width: 640px) {
+  .float-wa .label {
+    display: none;
+  }
+  .float-wa {
+    padding: 0.95rem;
+  }
+}
+
+/* ---- Site loader: the logo-motion plays once, then fades to reveal the page ---- */
+
+.site-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--night);
+  opacity: 1;
+  transition: opacity 0.55s ease-out;
+}
+
+.site-loader.is-fading {
+  opacity: 0;
+}
+
+.site-loader-video {
+  width: min(90vw, 620px);
+  height: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-loader {
+    display: none;
+  }
+}
+
+/* Set by the pre-paint script once the intro has already played this session. */
+:root[data-loader-seen] .site-loader {
+  display: none;
+}
+
+/* ---- Founder ---- */
+
+.founder-print {
+  max-width: 380px;
+}
+
+.founder-name {
+  font-family: var(--font-display), sans-serif;
+  font-weight: 900;
+  font-size: clamp(1.15rem, 2.2vw, 1.45rem);
+  letter-spacing: -0.01em;
+  color: var(--paper);
+}
+
+/* The story column runs long, so it aligns to the top of the photo rather than
+   floating against its centre. */
+.founder-grid {
+  align-items: start;
+}
+
+/* The opening line does the work a pull quote used to: it is the one thing read
+   even by someone who skips the paragraphs. */
+.founder-lead {
+  margin-top: 0.6rem;
+  padding-left: 1.1rem;
+  border-left: 1px solid var(--lime);
+  font-family: var(--font-body), 'Segoe UI', sans-serif;
+  font-size: clamp(1.15rem, 2.2vw, 1.45rem);
+  font-weight: 600;
+  line-height: 1.45;
+  color: var(--lime);
+  text-wrap: balance;
+}
+
+.founder-story {
+  margin-top: 0.9rem;
+  max-width: 60ch;
+  color: var(--cloud);
+}
+
+.founder-story:first-of-type {
+  margin-top: 1.1rem;
+}
+
+/* ---- Footer ---- */
+
+.site-footer {
+  margin-top: clamp(3.5rem, 8vw, 6.5rem);
+  background: var(--night-soft);
+  border-top: 1px solid rgba(166, 212, 32, 0.35);
+  padding-block: 3rem 2rem;
+  font-size: 0.98rem;
+}
+
+.site-footer h3 {
+  font-size: 1.05rem;
+  margin-bottom: 0.6rem;
+  color: var(--lime);
+}
+
+.site-footer a {
+  color: var(--paper);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 2.5rem;
+}
+
+.footer-phone {
+  font-family: var(--font-display), sans-serif;
+  font-weight: 900;
+  font-size: 1.6rem;
+  letter-spacing: -0.01em;
+  color: var(--lime);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-block: 0.35rem;
+}
+
+.footer-bottom {
+  margin-top: 2.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px dashed rgba(166, 212, 32, 0.3);
+  color: var(--cloud);
+  font-family: var(--font-hand), monospace;
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  text-align: center;
+}
+
+/* ---- Grids ---- */
+
+.grid-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.75rem 1.5rem;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem;
+}
+
+@media (max-width: 980px) {
+  .grid-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .grid-3 {
+    grid-template-columns: 1fr;
+  }
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---- Hero: the night departure ---- */
+
+.hero {
+  position: relative;
+  min-height: min(92vh, 880px);
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+
+.hero .hero-photo {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero .hero-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero .hero-photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(11, 13, 9, 0.72) 0%, rgba(11, 13, 9, 0.35) 42%, rgba(11, 13, 9, 0.88) 82%, var(--night) 100%),
+    linear-gradient(75deg, rgba(11, 13, 9, 0.72) 0%, rgba(11, 13, 9, 0.15) 55%, rgba(11, 13, 9, 0.05) 100%);
+}
+
+.hero .hero-inner {
+  position: relative;
+  z-index: 2;
+  width: min(var(--container), 100% - 2.5rem);
+  margin-inline: auto;
+  padding-block: clamp(4rem, 10vh, 7rem) clamp(3rem, 9vh, 6rem);
+}
+
+.hero h1 {
+  font-size: clamp(3rem, 9vw, 7rem);
+  max-width: 12ch;
+}
+
+.hero h1 .lime {
+  color: var(--lime);
+}
+
+.hero .hero-sub {
+  color: var(--paper);
+  font-size: clamp(1.05rem, 1.6vw, 1.3rem);
+  max-width: 44ch;
+  margin-top: 1.1rem;
+}
+
+.hero .hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  margin-top: 1.9rem;
+}
+
+/* Flight path: the one authored moment. The dashed route draws, the plane rides it. */
+
+.flight {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.flight .route {
+  fill: none;
+  stroke: var(--lime);
+  stroke-width: 2.5;
+  stroke-dasharray: 10 12;
+  opacity: 0.9;
+  animation: route-draw 2.4s cubic-bezier(0.3, 0, 0.2, 1) both;
+}
+
+@keyframes route-draw {
+  from {
+    stroke-dashoffset: 1400;
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.9;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.flight .plane {
+  offset-path: path('M -40 420 C 280 370, 560 300, 840 235 C 1060 185, 1240 150, 1480 105');
+  offset-rotate: auto;
+  animation: plane-fly 2.4s cubic-bezier(0.3, 0, 0.2, 1) both;
+}
+
+@keyframes plane-fly {
+  from {
+    offset-distance: 0%;
+  }
+  to {
+    offset-distance: 100%;
+  }
+}
+
+@supports not (offset-path: path('M 0 0 L 1 1')) {
+  .flight .plane {
+    display: none;
+  }
+}
+
+/* Phones still get the route: drawn static, plane resting mid-flight in the visible crop. */
+@media (max-width: 760px) {
+  .flight .route {
+    animation: none;
+    opacity: 0.75;
+  }
+  .flight .plane {
+    animation: none;
+    offset-distance: 55%;
+  }
+}
+
+/* ---- Now boarding chip ---- */
+
+.stamp {
+  position: absolute;
+  top: -0.85rem;
+  right: 1rem;
+  background: var(--lime);
+  color: var(--night);
+  font-family: var(--font-hand), monospace;
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.7rem;
+  border-radius: 4px;
+  transform: rotate(2deg);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
+}
+
+/* ---- Map print cover patch ---- */
+
+.map-cover {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 4;
+  background: var(--paper);
+  color: var(--ink);
+  border: 1px solid rgba(20, 19, 14, 0.25);
+  border-radius: 6px;
+  padding: 0.55rem 0.9rem;
+  font-family: var(--font-hand), monospace;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+  max-width: 320px;
+}
+
+/* ---- Details / collapsible diary ---- */
+
+details.fold summary {
+  cursor: pointer;
+  font-weight: 700;
+  color: var(--ink);
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+details.fold summary::-webkit-details-marker {
+  display: none;
+}
+
+details.fold summary .chev {
+  transition: transform 0.3s ease-out;
+}
+
+details.fold[open] summary .chev {
+  transform: rotate(90deg);
+}
+
+/* ---- Forms ---- */
+
+.field {
+  display: grid;
+  gap: 0.4rem;
+  margin-bottom: 1.1rem;
+}
+
+.field label {
+  font-weight: 700;
+  color: var(--ink);
+  font-size: 0.98rem;
+}
+
+.field input,
+.field select {
+  font: inherit;
+  color: var(--ink);
+  background-color: #fdfbf4;
+  border: 2px solid rgba(20, 19, 14, 0.45);
+  border-radius: 8px;
+  padding: 0.7rem 0.8rem;
+  min-height: 48px;
+}
+
+.field select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M5.5 9 12 15.5 18.5 9' stroke='%2314130e' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.8rem center;
+  padding-right: 2.6rem;
+}
+
+.field input::placeholder {
+  color: var(--ink-soft);
+}
+
+.field input:focus,
+.field select:focus {
+  outline: 3px solid var(--leaf);
+  outline-offset: 1px;
+  border-color: var(--leaf);
+}
+
+.hint {
+  color: var(--ink-soft);
+  font-size: 0.92rem;
+}
+
+/* ---- Reduced motion ---- */
+
+@media (prefers-reduced-motion: reduce) {
+  .flight .route,
+  .flight .plane {
+    animation: none;
+  }
+  .announce span {
+    animation: none;
+    position: static;
+    opacity: 1;
+  }
+  .announce span:nth-child(2) {
+    display: none;
+  }
+  .announce {
+    height: auto;
+    padding-block: 0.4rem;
+  }
+  * {
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ---- Visually hidden ---- */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

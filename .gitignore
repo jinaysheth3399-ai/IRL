@@ -1,0 +1,39 @@
+# dependencies
+/node_modules
+
+# next.js
+/.next/
+/out/
+next-env.d.ts
+*.tsbuildinfo
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+Thumbs.db
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files
+.env
+.env*.local
+
+# editor / os
+.vscode/
+.idea/
+
+# local tooling state, not part of the site
+.claude/
+.impeccable/
+
+# raw source uploads, already processed into public/
+IRL-Logo-Motion (1).mp4
+IRL-Logo-selection.png
+KRphoto.jpeg

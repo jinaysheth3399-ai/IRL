@@ -1,0 +1,70 @@
+{
+  "hero": {
+    "source": "Unsplash",
+    "url": "https://unsplash.com/photos/1506905925346-21bda4d32df4"
+  },
+  "kashmir": {
+    "source": "Wikimedia Commons",
+    "url": "https://commons.wikimedia.org/wiki/File%3AEmpty%20shikara%20on%20Dal%20Lake%2C%20Srinagar%2C%20India%202013-08-23%20(flickr%209967093983).jpg"
+  },
+  "ladakh": {
+    "source": "Unsplash",
+    "url": "https://unsplash.com/photos/1581793745862-99fde7fa73d2"
+  },
+  "kerala": {
+    "source": "Unsplash",
+    "url": "https://unsplash.com/photos/1602216056096-3b40cc0c9944"
+  },
+  "andaman": {
+    "source": "Wikimedia Commons",
+    "url": "https://commons.wikimedia.org/wiki/File%3AHavelock%20Island%2C%20Radhanagar%20Beach%20before%20sunset%2C%20Andaman%20Islands.jpg"
+  },
+  "himachal": {
+    "source": "Unsplash",
+    "url": "https://unsplash.com/photos/1626621341517-bbf3d9990a23"
+  },
+  "sikkim-darjeeling": {
+    "source": "Wikimedia Commons",
+    "url": "https://commons.wikimedia.org/wiki/File%3AKanchenjunga%20range%20from%20tea%20gardens%20of%20darjeeling.jpg"
+  },
+  "meghalaya": {
+    "source": "Wikimedia Commons",
+    "url": "https://commons.wikimedia.org/wiki/File%3ANohkalikai%20Falls%20Cherrapunjee%20Shillong%20Meghalaya%20India.jpg"
+  },
+  "south-india": {
+    "source": "Unsplash",
+    "url": "https://unsplash.com/photos/1582510003544-4d00b7f74220"
+  },
+  "dubai": {
+    "source": "Unsplash",
+    "url": "https://unsplash.com/photos/1512453979798-5ea266f8880c"
+  },
+  "bali": {
+    "source": "Unsplash",
+    "url": "https://unsplash.com/photos/1537996194471-e657df975ab4"
+  },
+  "thailand": {
+    "source": "Unsplash",
+    "url": "https://unsplash.com/photos/1552465011-b4e21bf6e79a"
+  },
+  "vietnam": {
+    "source": "Unsplash",
+    "url": "https://unsplash.com/photos/1528127269322-539801943592"
+  },
+  "sri-lanka": {
+    "source": "Wikimedia Commons",
+    "url": "https://commons.wikimedia.org/wiki/File%3ASigiriya.jpg"
+  },
+  "philippines": {
+    "source": "Unsplash",
+    "url": "https://unsplash.com/photos/1518509562904-e7ef99cdcc86"
+  },
+  "cambodia": {
+    "source": "Wikimedia Commons",
+    "url": "https://commons.wikimedia.org/wiki/File%3AAngkor%20Wat%20with%20its%20reflection%20(cropped).jpg"
+  },
+  "south-africa": {
+    "source": "Unsplash",
+    "url": "https://unsplash.com/photos/1516426122078-c23e76319801"
+  }
+}
