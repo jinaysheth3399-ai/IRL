@@ -945,7 +945,9 @@ a.print-link:hover .caption {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--night);
+  /* Pure black, matching the loader clip's own baked-in background exactly so
+     the video's edges never show a seam against this div. */
+  background: #000;
   opacity: 1;
   transition: opacity 0.55s ease-out;
 }
