@@ -1,42 +1,59 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import type { FormEvent } from 'react';
 import Link from 'next/link';
 import { waLink } from '@/lib/site';
 import { destinations } from '@/lib/destinations';
+import { sendEnquiryToCrm } from '@/lib/crm';
 
-const months = [
-  'January',
-  'February',
-  'March',
-  'April',
-  'May',
-  'June',
-  'July',
-  'August',
-  'September',
-  'October',
-  'November',
-  'December',
-];
+const NOT_SURE = 'Not sure, suggest me';
 
-const adultOptions = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10 or more'];
-const childOptions = ['0', '1', '2', '3', '4', '5', '6 or more'];
-const budgetOptions = ['Under Rs 25,000', 'Rs 25,000 to 50,000', 'Rs 50,000 to 1 lakh', 'Above 1 lakh', 'Suggest me'];
+const indiaDestinations = destinations.filter((d) => d.region === 'india');
+const worldDestinations = destinations.filter((d) => d.region === 'world');
+
+// The CRM and the rest of the site both speak DD/MM/YYYY.
+function formatDate(value: string): string {
+  const [y, m, d] = value.split('-');
+  return y && m && d ? `${d}/${m}/${y}` : value;
+}
 
 export function PlanForm() {
-  const [destination, setDestination] = useState('Not sure, suggest me');
-  const [month, setMonth] = useState('Flexible');
-  const [adults, setAdults] = useState('2');
-  const [children, setChildren] = useState('0');
-  const [budget, setBudget] = useState('Suggest me');
+  const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
+  const [destination, setDestination] = useState(NOT_SURE);
+  const [travelDate, setTravelDate] = useState('');
+  const [nights, setNights] = useState('');
+  const [pax, setPax] = useState('');
   const [submitted, setSubmitted] = useState(false);
+
+  // Set after mount: the build-time date would not match the visitor's today.
+  const [today, setToday] = useState('');
+  useEffect(() => {
+    setToday(new Date().toISOString().slice(0, 10));
+  }, []);
 
   function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const message = `Hi IRL, I want to plan a trip. Destination: ${destination}. Month: ${month}. People: ${adults} adults, ${children} children. Budget per person: ${budget}. My WhatsApp number: ${phone}.`;
+
+    sendEnquiryToCrm({
+      form: 'plan-my-trip',
+      name,
+      phone,
+      destination,
+      travelDate,
+      nights: Number(nights) || null,
+      pax: Number(pax) || null,
+      pageUrl: typeof window === 'undefined' ? null : window.location.href,
+      submittedAt: new Date().toISOString(),
+    });
+
+    const message =
+      `Hi IRL, I want to plan a trip. Name: ${name}. Destination: ${destination}. ` +
+      `Travel date: ${formatDate(travelDate)}. Nights: ${nights}. People: ${pax}. ` +
+      `My WhatsApp number: ${phone}.`;
+
+    // Opened straight from the click so the browser does not treat it as a popup.
     window.open(waLink(message), '_blank');
     setSubmitted(true);
   }
@@ -55,56 +72,16 @@ export function PlanForm() {
       ) : (
         <form onSubmit={onSubmit}>
           <div className="field">
-            <label htmlFor="pf-destination">Where do you want to go?</label>
-            <select id="pf-destination" value={destination} onChange={(e) => setDestination(e.target.value)}>
-              <option>Not sure, suggest me</option>
-              {destinations.map((d) => (
-                <option key={d.slug}>{d.name}</option>
-              ))}
-            </select>
-          </div>
-
-          <div className="field">
-            <label htmlFor="pf-month">When?</label>
-            <select id="pf-month" value={month} onChange={(e) => setMonth(e.target.value)}>
-              <option>Flexible</option>
-              {months.map((m) => (
-                <option key={m}>{m}</option>
-              ))}
-            </select>
-          </div>
-
-          <fieldset className="field" style={{ border: 'none' }}>
-            <legend style={{ fontWeight: 700, color: 'var(--ink)', fontSize: '0.98rem', marginBottom: '0.4rem' }}>
-              How many people?
-            </legend>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.9rem' }}>
-              <label style={{ display: 'grid', gap: '0.4rem' }}>
-                <span className="hint">Adults</span>
-                <select value={adults} onChange={(e) => setAdults(e.target.value)}>
-                  {adultOptions.map((n) => (
-                    <option key={n}>{n}</option>
-                  ))}
-                </select>
-              </label>
-              <label style={{ display: 'grid', gap: '0.4rem' }}>
-                <span className="hint">Children</span>
-                <select value={children} onChange={(e) => setChildren(e.target.value)}>
-                  {childOptions.map((n) => (
-                    <option key={n}>{n}</option>
-                  ))}
-                </select>
-              </label>
-            </div>
-          </fieldset>
-
-          <div className="field">
-            <label htmlFor="pf-budget">Budget per person</label>
-            <select id="pf-budget" value={budget} onChange={(e) => setBudget(e.target.value)}>
-              {budgetOptions.map((b) => (
-                <option key={b}>{b}</option>
-              ))}
-            </select>
+            <label htmlFor="pf-name">Your name</label>
+            <input
+              id="pf-name"
+              type="text"
+              required
+              maxLength={120}
+              autoComplete="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
           </div>
 
           <div className="field">
@@ -122,6 +99,67 @@ export function PlanForm() {
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
             />
+          </div>
+
+          <div className="field">
+            <label htmlFor="pf-destination">Where do you want to go?</label>
+            <select id="pf-destination" value={destination} onChange={(e) => setDestination(e.target.value)}>
+              <option>{NOT_SURE}</option>
+              <optgroup label="India">
+                {indiaDestinations.map((d) => (
+                  <option key={d.slug}>{d.name}</option>
+                ))}
+              </optgroup>
+              <optgroup label="World">
+                {worldDestinations.map((d) => (
+                  <option key={d.slug}>{d.name}</option>
+                ))}
+              </optgroup>
+            </select>
+          </div>
+
+          <div className="field">
+            <label htmlFor="pf-date">Travel date</label>
+            <input
+              id="pf-date"
+              type="date"
+              required
+              min={today || undefined}
+              value={travelDate}
+              onChange={(e) => setTravelDate(e.target.value)}
+            />
+            <span className="hint">Not fixed yet? Put the date you have in mind.</span>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.9rem' }}>
+            <div className="field">
+              <label htmlFor="pf-nights">Nights</label>
+              <input
+                id="pf-nights"
+                type="number"
+                required
+                inputMode="numeric"
+                min={1}
+                max={60}
+                placeholder="5"
+                value={nights}
+                onChange={(e) => setNights(e.target.value)}
+              />
+            </div>
+            <div className="field">
+              <label htmlFor="pf-pax">People</label>
+              <input
+                id="pf-pax"
+                type="number"
+                required
+                inputMode="numeric"
+                min={1}
+                max={50}
+                placeholder="2"
+                value={pax}
+                onChange={(e) => setPax(e.target.value)}
+              />
+            </div>
           </div>
 
           <button type="submit" className="btn btn-wa" style={{ width: '100%', justifyContent: 'center' }}>
