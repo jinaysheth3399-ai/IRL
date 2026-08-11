@@ -28,6 +28,7 @@ export function EnquiryForm({ source }: { source: 'plan-my-trip' | 'contact' }) 
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [destination, setDestination] = useState(NOT_SURE);
+  const [dateMode, setDateMode] = useState<'flexible' | 'fixed'>('flexible');
   const [travelDate, setTravelDate] = useState('');
   const [nights, setNights] = useState('');
   const [pax, setPax] = useState('');
@@ -50,21 +51,25 @@ export function EnquiryForm({ source }: { source: 'plan-my-trip' | 'contact' }) 
   function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
+    const fixed = dateMode === 'fixed';
+
     sendEnquiryToCrm({
       form: source,
       name,
       phone,
       destination,
-      travelDate,
+      travelDate: fixed ? travelDate : null,
+      flexibleDates: !fixed,
       nights: Number(nights) || null,
       pax: Number(pax) || null,
       pageUrl: typeof window === 'undefined' ? null : window.location.href,
       submittedAt: new Date().toISOString(),
     });
 
+    const when = fixed ? formatDate(travelDate) : 'Flexible';
     const message =
       `Hi IRL, I want to plan a trip. Name: ${name}. Destination: ${destination}. ` +
-      `Travel date: ${formatDate(travelDate)}. Nights: ${nights}. People: ${pax}. ` +
+      `Travel date: ${when}. Nights: ${nights}. Travellers: ${pax}. ` +
       `My WhatsApp number: ${phone}.`;
 
     // Opened straight from the click so the browser does not treat it as a popup.
@@ -133,18 +138,46 @@ export function EnquiryForm({ source }: { source: 'plan-my-trip' | 'contact' }) 
         </select>
       </div>
 
-      <div className="field">
-        <label htmlFor={id('date')}>Travel date</label>
-        <input
-          id={id('date')}
-          type="date"
-          required
-          min={today || undefined}
-          value={travelDate}
-          onChange={(e) => setTravelDate(e.target.value)}
-        />
-        <span className="hint">Not fixed yet? Put the date you have in mind.</span>
-      </div>
+      <fieldset className="field" style={{ border: 'none', padding: 0 }}>
+        <legend style={{ fontWeight: 700, color: 'var(--ink)', fontSize: '0.98rem', marginBottom: '0.4rem' }}>
+          When do you want to travel?
+        </legend>
+        <div className="choice-row">
+          <label className={`choice${dateMode === 'flexible' ? ' is-on' : ''}`}>
+            <input
+              type="radio"
+              name={id('dateMode')}
+              checked={dateMode === 'flexible'}
+              onChange={() => setDateMode('flexible')}
+            />
+            Dates not fixed
+          </label>
+          <label className={`choice${dateMode === 'fixed' ? ' is-on' : ''}`}>
+            <input
+              type="radio"
+              name={id('dateMode')}
+              checked={dateMode === 'fixed'}
+              onChange={() => setDateMode('fixed')}
+            />
+            I know my dates
+          </label>
+        </div>
+      </fieldset>
+
+      {/* The calendar only appears once there is a date to put in it. */}
+      {dateMode === 'fixed' ? (
+        <div className="field">
+          <label htmlFor={id('date')}>Travel date</label>
+          <input
+            id={id('date')}
+            type="date"
+            required
+            min={today || undefined}
+            value={travelDate}
+            onChange={(e) => setTravelDate(e.target.value)}
+          />
+        </div>
+      ) : null}
 
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.9rem' }}>
         <div className="field">
@@ -156,13 +189,13 @@ export function EnquiryForm({ source }: { source: 'plan-my-trip' | 'contact' }) 
             inputMode="numeric"
             min={1}
             max={60}
-            placeholder="5"
+            placeholder="e.g. 5"
             value={nights}
             onChange={(e) => setNights(e.target.value)}
           />
         </div>
         <div className="field">
-          <label htmlFor={id('pax')}>People</label>
+          <label htmlFor={id('pax')}>Number of travellers</label>
           <input
             id={id('pax')}
             type="number"
@@ -170,7 +203,7 @@ export function EnquiryForm({ source }: { source: 'plan-my-trip' | 'contact' }) 
             inputMode="numeric"
             min={1}
             max={50}
-            placeholder="2"
+            placeholder="e.g. 4"
             value={pax}
             onChange={(e) => setPax(e.target.value)}
           />

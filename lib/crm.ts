@@ -9,7 +9,8 @@ export type EnquiryPayload = {
   name: string;
   phone: string;
   destination?: string | null;
-  travelDate?: string | null; // YYYY-MM-DD
+  travelDate?: string | null; // YYYY-MM-DD, null when the visitor is flexible
+  flexibleDates?: boolean;
   nights?: number | null;
   pax?: number | null;
   message?: string | null;
