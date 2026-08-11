@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import type { FormEvent } from 'react';
+import type { FormEvent, MouseEvent } from 'react';
 import Link from 'next/link';
 import { waLink } from '@/lib/site';
 import { destinations } from '@/lib/destinations';
@@ -11,6 +11,22 @@ const NOT_SURE = 'Not sure, suggest me';
 
 const indiaDestinations = destinations.filter((d) => d.region === 'india');
 const worldDestinations = destinations.filter((d) => d.region === 'world');
+
+/**
+ * Browsers only open the date picker from its small indicator icon, which is a
+ * poor target on a phone. This opens it from anywhere in the field. showPicker
+ * throws unless it is a genuine user gesture, and older browsers lack it
+ * entirely, so failure just leaves the normal typing behaviour intact.
+ */
+function openPicker(e: MouseEvent<HTMLInputElement>) {
+  const el = e.currentTarget;
+  if (typeof el.showPicker !== 'function') return;
+  try {
+    el.showPicker();
+  } catch {
+    // Not user-activated, or unsupported: the field still works by typing.
+  }
+}
 
 // The CRM and the rest of the site both speak DD/MM/YYYY.
 function formatDate(value: string): string {
@@ -175,6 +191,7 @@ export function EnquiryForm({ source }: { source: 'plan-my-trip' | 'contact' }) 
             min={today || undefined}
             value={travelDate}
             onChange={(e) => setTravelDate(e.target.value)}
+            onClick={openPicker}
           />
         </div>
       ) : null}
