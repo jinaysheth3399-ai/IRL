@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
-import { WaButton } from '@/components/ui';
-import { defaultWaMessage } from '@/lib/site';
+import { PlanTripButton } from '@/components/ui';
 import { howItWorksFull } from '@/lib/content';
 
 export const metadata: Metadata = {
@@ -51,7 +50,7 @@ export default function HowItWorksPage() {
             <i className="tape" aria-hidden="true" />
             <h2>Start with one message.</h2>
             <div style={{ marginTop: '1.25rem' }}>
-              <WaButton message={defaultWaMessage}>Start With One Message</WaButton>
+              <PlanTripButton>Start With One Message</PlanTripButton>
             </div>
           </div>
         </div>

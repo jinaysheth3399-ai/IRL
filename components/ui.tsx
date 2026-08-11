@@ -111,6 +111,30 @@ export function WaButton({ message, children, className = 'btn btn-wa' }: { mess
   );
 }
 
+/**
+ * Starts a trip enquiry. Sends the visitor to the form rather than straight to
+ * WhatsApp, so the lead reaches the CRM as a complete record; the form still
+ * hands off to WhatsApp on submit. Lime, not WhatsApp green: this is a brand
+ * action, and only real WhatsApp actions wear the green.
+ */
+export function PlanTripButton({
+  destination,
+  children = 'Plan My Trip',
+  className = 'btn btn-primary',
+}: {
+  destination?: string;
+  children?: ReactNode;
+  className?: string;
+}) {
+  const href = destination ? `/plan-my-trip/?destination=${encodeURIComponent(destination)}` : '/plan-my-trip/';
+  return (
+    <Link className={className} href={href}>
+      <IconPlane size={18} color="currentColor" />
+      {children}
+    </Link>
+  );
+}
+
 export function SectionHead({ title, lead }: { title: string; lead?: string }) {
   return (
     <div className="section-head">

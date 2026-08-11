@@ -1,8 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { TripCard, WaButton } from '@/components/ui';
+import { TripCard, PlanTripButton } from '@/components/ui';
 import { worldTrips } from '@/lib/destinations';
-import { defaultWaMessage } from '@/lib/site';
 
 export const metadata: Metadata = {
   title: 'International Tour Packages from Kolhapur',
@@ -49,7 +48,7 @@ export default function WorldTripsPage() {
             <h2>Not sure which trip fits?</h2>
             <p style={{ margin: '0.75rem auto 1.5rem' }}>Message us. We suggest the right trip for your group and budget.</p>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.9rem', justifyContent: 'center' }}>
-              <WaButton message={defaultWaMessage}>Plan My Trip on WhatsApp</WaButton>
+              <PlanTripButton />
               <Link className="btn btn-ghost" href="/india-trips/" style={{ color: 'var(--ink)' }}>
                 See India Trips
               </Link>

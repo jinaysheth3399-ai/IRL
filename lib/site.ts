@@ -32,5 +32,8 @@ export function waLink(message: string): string {
   return `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(message)}`;
 }
 
-export const defaultWaMessage =
-  'Hi IRL, I want to plan a trip. Destination: ____. Number of people: ____. Month: ____.';
+// Sent by the straight-to-chat buttons (header, floating pill, FAQ, Reviews).
+// No blanks to fill in: asking someone to do data entry inside a chat box is
+// worse than just asking them in the conversation. Trip enquiries go through the
+// form instead, which sends a fully filled message.
+export const defaultWaMessage = 'Hi IRL, I want to plan a trip.';

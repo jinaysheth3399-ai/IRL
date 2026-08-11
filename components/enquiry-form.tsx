@@ -37,6 +37,12 @@ export function EnquiryForm({ source }: { source: 'plan-my-trip' | 'contact' }) 
   const [today, setToday] = useState('');
   useEffect(() => {
     setToday(new Date().toISOString().slice(0, 10));
+
+    // Arriving from a destination page ("Get My Kashmir Price") preselects it,
+    // so nobody re-picks something they already chose. Read from the URL rather
+    // than useSearchParams: this is a static export and the value is optional.
+    const wanted = new URLSearchParams(window.location.search).get('destination');
+    if (wanted && destinations.some((d) => d.name === wanted)) setDestination(wanted);
   }, []);
 
   const id = (field: string) => `${source}-${field}`;

@@ -1,8 +1,8 @@
 import Link from 'next/link';
-import { PhotoPrint, SectionHead, TripCard, WaButton, IconCheck } from '@/components/ui';
+import { PhotoPrint, SectionHead, TripCard, PlanTripButton, IconCheck } from '@/components/ui';
 import { indiaTrips, worldTrips } from '@/lib/destinations';
 import { trustStrip, howItWorksShort, seasons, whyTrust, sampleReviews } from '@/lib/content';
-import { site, defaultWaMessage } from '@/lib/site';
+import { site } from '@/lib/site';
 import { SeasonNow } from '@/components/season-now';
 
 
@@ -28,7 +28,7 @@ export default function HomePage() {
           </h1>
           <p className="hero-sub">{site.subline}</p>
           <div className="hero-actions">
-            <WaButton message={defaultWaMessage}>Plan My Trip on WhatsApp</WaButton>
+            <PlanTripButton />
             <Link className="btn btn-ghost" href="/india-trips/">
               See All Trips
             </Link>
@@ -165,9 +165,7 @@ export default function HomePage() {
             <i className="tape" aria-hidden="true" />
             <h2>Your next trip starts with one message.</h2>
             <p style={{ margin: '0.75rem auto 1.5rem' }}>Tell us where you want to go. We will do the rest.</p>
-            <WaButton message={defaultWaMessage}>
-              Plan My Trip on WhatsApp
-            </WaButton>
+            <PlanTripButton />
           </div>
         </div>
       </section>

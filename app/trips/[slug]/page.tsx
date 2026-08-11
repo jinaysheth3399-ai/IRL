@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { PhotoPrint, WaButton, SectionHead, TripCard, IconCheck, IconMinus, IconChevron } from '@/components/ui';
+import { PhotoPrint, PlanTripButton, SectionHead, TripCard, IconCheck, IconMinus, IconChevron } from '@/components/ui';
 import { destinations, getDestination, indiaTrips, worldTrips, waMessageFor } from '@/lib/destinations';
 
 export function generateStaticParams() {
@@ -117,7 +117,7 @@ export default async function TripPage({ params }: { params: Promise<{ slug: str
             <p className="hand" style={{ color: 'var(--marigold)', fontSize: '1.15rem', marginTop: '1.5rem' }}>{d.groupNote}</p>
           ) : null}
           <div style={{ marginTop: '1.75rem' }}>
-            <WaButton message={waMessageFor(d.name)}>Get My {d.name} Price on WhatsApp</WaButton>
+            <PlanTripButton destination={d.name}>Get My {d.name} Price</PlanTripButton>
           </div>
         </div>
       </section>
@@ -232,7 +232,7 @@ export default async function TripPage({ params }: { params: Promise<{ slug: str
             <i className="tape" aria-hidden="true" />
             <h2>Get your exact price in one message.</h2>
             <p style={{ margin: '0.75rem auto 1.5rem' }}>Tell us your month and group size. We send the full plan on WhatsApp.</p>
-            <WaButton message={waMessageFor(d.name)}>Get My {d.name} Price on WhatsApp</WaButton>
+            <PlanTripButton destination={d.name}>Get My {d.name} Price</PlanTripButton>
           </div>
         </div>
       </section>
