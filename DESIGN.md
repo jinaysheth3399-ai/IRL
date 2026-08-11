@@ -15,6 +15,7 @@ colors:
   cloud: "#cfcaba"
   wa-green: "#0e7d43"
   wa-green-deep: "#0a6635"
+  alert: "#b02c15"
 typography:
   display:
     fontFamily: "Archivo, sans-serif"
@@ -143,6 +144,9 @@ A logo-pinned three-part palette - night, paper, lime - with olive-gray and leaf
 - **Ink** (#14130e): text on paper.
 - **Ink Soft** (#6f6a58): olive-gray secondary text on paper (captions, durations, hints, placeholders).
 - **Cloud** (#cfcaba): secondary text on night (leads, taglines, footer bottom line).
+
+### Alert
+- **Alert** (#b02c15): the only red. Validation messages under form fields, the border of an invalid field, and the "not included" minus glyph. Lives on paper only, where it reads 6.3:1 against the field background; the night palette has no error state because nothing on night can be wrong.
 
 ### Named Rules
 **The Two Greens Rule.** WhatsApp green appears only on WhatsApp actions, and WhatsApp actions never wear brand lime. A submit that composes a WhatsApp message is deep green and says "on WhatsApp" in its label. The two greens never trade places.

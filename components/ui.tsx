@@ -33,7 +33,7 @@ export function IconCheck({ color = '#2c7a3f' }: { color?: string }) {
 export function IconMinus() {
   return (
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path d="M5 12h14" stroke="#b02c15" strokeWidth="2.4" strokeLinecap="round" />
+      <path d="M5 12h14" stroke="var(--alert)" strokeWidth="2.4" strokeLinecap="round" />
     </svg>
   );
 }

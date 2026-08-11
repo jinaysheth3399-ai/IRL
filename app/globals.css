@@ -17,6 +17,9 @@
   --cloud: #cfcaba;
   --wa-green: #0e7d43;
   --wa-green-deep: #0a6635;
+  /* Alert red, for validation messages and invalid fields. Lives on paper only,
+     alongside ink and leaf; the night palette has no error state. */
+  --alert: #b02c15;
   --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.5), 0 2px 6px rgba(0, 0, 0, 0.4);
   --shadow-lift: 0 18px 44px rgba(0, 0, 0, 0.65), 0 4px 12px rgba(0, 0, 0, 0.45);
   --container: 1180px;
@@ -1384,14 +1387,14 @@ details.fold[open] summary .chev {
 /* Validation message under a field. Sits on paper, so it takes the paper-side
    warning red rather than anything from the night palette. */
 .field-error {
-  color: #a3301a;
+  color: var(--alert);
   font-size: 0.92rem;
   font-weight: 600;
 }
 
 .field input[aria-invalid='true'],
 .field select[aria-invalid='true'] {
-  border-color: #a3301a;
+  border-color: var(--alert);
 }
 
 .btn[disabled] {
