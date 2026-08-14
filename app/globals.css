@@ -1384,6 +1384,187 @@ details.fold[open] summary .chev {
   font-size: 0.92rem;
 }
 
+/* ---- From price: one fare, never without the group size it assumes ----
+   Optional by construction. No priceFrom means no element at all: .pass-meta
+   drops a grid row and the facts row stays .grid-2. Grid gap applies only
+   between rendered tracks, so absence costs exactly zero space. */
+
+/* A. Boarding pass: the fare band, below .pass-name */
+
+.pass-fare {
+  grid-column: 1 / -1;
+  /* Pulled out to .pass-meta's padding edge so this dashed rule and the one on
+     .pass-meta share an extent. Inset by the padding they disagree by 0.7rem,
+     which is visible on a card whose whole grammar is precise perforation. */
+  margin: 0.5rem -0.35rem 0;
+  padding: 0.45rem 0.35rem 0;
+  border-top: 1px dashed rgba(20, 19, 14, 0.3); /* same stroke as .pass-meta */
+  display: flex;
+  flex-wrap: wrap;
+  /* The documented label step, same as .pass-route and .pass-duration: the fare
+     is a third ticket fact, so it speaks at the volume of the other two. */
+  font-size: 0.72rem;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.pass-fare-amt {
+  flex-basis: 100%;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--ink);
+}
+
+/* The basis is the honesty constraint, not fine print, so it takes full ink and
+   its own line. It wraps rather than truncating: a silently cut "per adult" or
+   "11 to 14" is the failure this line exists to prevent. */
+.pass-fare-basis {
+  flex-basis: 100%;
+  font-weight: 400;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: var(--ink);
+}
+
+/* Passes must not stretch. In a row mixing priced and unpriced cards the link
+   box would otherwise extend its hit area and focus ring into empty night below
+   the shorter card. Scoped with > to pass links only: the .grid-cards on the
+   homepage and About hold <p class="stub"> children, which must keep
+   stretching, as must .note cards in .grid-3. */
+.grid-cards > a.print-link,
+.grid-3 > a.print-link {
+  align-self: start;
+}
+
+/* B. Destination page: the third fact stub. Inherits grain, paper gradient,
+   --shadow-card and the punched left edge from .stub. */
+
+.stub-fare {
+  padding-bottom: 0.95rem;
+}
+
+.stub-fare .stub-label {
+  margin-bottom: 0.15rem;
+}
+
+.fare-amount {
+  display: flex;
+  /* Never nowrap: .stub is overflow:hidden, and the widest real value,
+     "Rs 1,35,677 per person" on South Africa, must wrap, not clip. */
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: 0.4rem;
+}
+
+/* Currency prints as a mono word at full ink value, never a glyph and never
+   dimmed: "USD 385" beside "Rs 17,500" must not be misreadable as rupees. */
+.fare-cur {
+  font-family: var(--font-hand), monospace;
+  font-weight: 700;
+  font-size: 0.92rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.fare-num {
+  font-family: var(--font-display), sans-serif;
+  font-weight: 900;
+  font-size: 1.55rem;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+
+/* "per adult" is load-bearing on Dubai, so the unit carries full ink too. */
+.fare-unit {
+  font-family: var(--font-hand), monospace;
+  font-weight: 700;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+/* The one line whose absence would mislead: body face, full ink, bold, and a
+   readable sentence rather than tracked-out uppercase. */
+.fare-basis {
+  display: block;
+  margin-top: 0.3rem;
+  font-weight: 700;
+  font-size: 0.98rem;
+  line-height: 1.4;
+  color: var(--ink);
+}
+
+/* Tear rule spans the content box only, so it does not cross the stub's own
+   perforation, which .stub's left padding already clears. */
+.fare-excl {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.55rem;
+  padding-top: 0.55rem;
+  border-top: 1px dashed rgba(20, 19, 14, 0.3);
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: var(--ink);
+}
+
+/* The only --ink-soft in the feature, and the only string here that is not
+   honesty-critical. Static, not absolutely positioned: a pinned chip collides
+   with the label around 560px to 700px inside overflow:hidden. */
+.fare-stamp {
+  display: block;
+  margin-top: 0.45rem;
+  font-family: var(--font-hand), monospace;
+  font-weight: 700;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+/* C. Final CTA note. Paper, so neither line may take lime. */
+
+.fare-recall {
+  margin: 0.9rem auto 0;
+  max-width: 46ch;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+/* Perforation grammar at the width of the runway rule, drawn in ink because
+   the note is paper. */
+.fare-rule {
+  width: 132px;
+  height: 0;
+  margin: 1rem auto 0;
+  border-top: 1px dashed rgba(20, 19, 14, 0.3);
+}
+
+.fare-caveat {
+  margin: 0.9rem auto 0;
+  max-width: 46ch;
+  color: var(--ink);
+}
+
+/* D. Listing grids: one freshness line per grid, on night. */
+
+.fare-footnote {
+  margin-top: 1.25rem;
+  font-family: var(--font-hand), monospace;
+  font-weight: 700;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--cloud);
+}
+
 /* Validation message under a field. Sits on paper, so it takes the paper-side
    warning red rather than anything from the night palette. */
 .field-error {

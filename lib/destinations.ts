@@ -1,7 +1,26 @@
-// Copy of record: supplied by the owner (2026-08-08), lightly edited to remove all prices.
-// Site rule: no prices anywhere. Exact price happens on WhatsApp.
+// Copy of record: supplied by the owner (2026-08-08).
+//
+// Prices (added 2026-08-14) are the "from" rates off the owner's own print
+// brochures, so a customer holding a brochure and a customer on the site never
+// see two different numbers. They are anchors only: the exact quote still
+// happens on WhatsApp, which is why every price ships with its group-size basis.
 
 export type Tier = { name: string; note: string };
+
+/**
+ * The lowest advertised rate for a destination, taken verbatim from the owner's
+ * print brochures so the site and the brochure never quote different numbers.
+ *
+ * `basis` is not fine print. Each brochure anchors its "from" rate on a different
+ * group size (6 to 14 travellers), so the same trip costs a couple noticeably
+ * more. The basis has to be readable next to the number or the price misleads.
+ */
+export type PriceFrom = {
+  amount: string; // formatted for display, e.g. '17,500' or '385'
+  currency: 'INR' | 'USD';
+  pax: string; // group size the rate assumes, e.g. '12' or '6 to 9'
+  per?: 'person' | 'adult'; // Dubai's brochure quotes per adult
+};
 
 export type Destination = {
   slug: string;
@@ -18,6 +37,8 @@ export type Destination = {
   photo: string;
   caption: string;
   tiers: Tier[];
+  /** Absent where we have no current brochure rate. Those pages show no price. */
+  priceFrom?: PriceFrom;
   groupNote?: string;
   days?: string[];
   daysTitle?: string;
@@ -47,6 +68,7 @@ export const destinations: Destination[] = [
       { name: 'Comfort', note: 'Better hotels, premium houseboat.' },
       { name: 'Premium', note: '4-star hotels, premium houseboat.' },
     ],
+    priceFrom: { amount: '17,500', currency: 'INR', pax: '12' },
     groupNote:
       'Travelling as 2? Price goes up a little. Group of 6 or more? Price drops. Ask us for your exact number.',
     daysTitle: 'Your 7 days',
@@ -99,6 +121,7 @@ export const destinations: Destination[] = [
       { name: 'Comfort', note: '3-star hotels and better camps.' },
       { name: 'Premium', note: '4-star hotels and the best camps at Pangong.' },
     ],
+    priceFrom: { amount: '17,900', currency: 'INR', pax: '12' },
     groupNote: 'Group of 6 travelling together? Price drops a lot. Ask us.',
     daysTitle: 'Your 7 days',
     days: [
@@ -151,6 +174,7 @@ export const destinations: Destination[] = [
       { name: 'Comfort', note: 'Good hotels, AC car for the full trip.' },
       { name: 'Premium', note: 'Better rooms, lake view stays.' },
     ],
+    priceFrom: { amount: '22,350', currency: 'INR', pax: '10' },
     groupNote:
       'Honeymoon couple? Ask us for the special honeymoon plan with candle light dinner and flower bed decoration.',
     daysTitle: 'Your 8 days',
@@ -205,6 +229,7 @@ export const destinations: Destination[] = [
       { name: 'Premium', note: '4-star hotels.' },
       { name: 'Luxury', note: '5-star beach resorts like Sea Shell and Barefoot.' },
     ],
+    priceFrom: { amount: '21,800', currency: 'INR', pax: '6' },
     daysTitle: 'Your 6 days',
     days: [
       "Day 1: Land at Port Blair. Corbyn's Cove beach. Evening light and sound show at Cellular Jail.",
@@ -248,6 +273,7 @@ export const destinations: Destination[] = [
       { name: 'Comfort', note: 'Good hotels, breakfast and dinner included.' },
       { name: 'Premium', note: 'Premium rooms with balcony and views.' },
     ],
+    priceFrom: { amount: '20,950', currency: 'INR', pax: '6' },
     daysTitle: 'Your 7 days',
     days: [
       'Day 1: Arrive Chandigarh. Drive to Manali.',
@@ -295,6 +321,7 @@ export const destinations: Destination[] = [
       { name: 'Comfort', note: 'Better hotels and premium rooms.' },
       { name: 'Premium', note: 'The best available in each town.' },
     ],
+    priceFrom: { amount: '21,850', currency: 'INR', pax: '6' },
     daysTitle: 'Your 9 days',
     days: [
       'Day 1: Arrive Bagdogra. Drive to Gangtok. Evening on MG Road.',
@@ -355,6 +382,7 @@ export const destinations: Destination[] = [
       'Day 6: Maa Kamakhya temple darshan. Brahmaputra river cruise in the evening.',
       'Day 7: Fly home.',
     ],
+    priceFrom: { amount: '27,250', currency: 'INR', pax: '6' },
     included: [
       'All hotels',
       'Breakfast and dinner daily',
@@ -386,6 +414,7 @@ export const destinations: Destination[] = [
       { name: 'Comfort', note: 'Good hotels and resorts, breakfast included.' },
       { name: 'Premium', note: 'Better resorts with views.' },
     ],
+    priceFrom: { amount: '28,950', currency: 'INR', pax: '10' },
     daysTitle: 'Your 8 days',
     days: [
       'Day 1: Arrive Bangalore. Drive to Mysore. Palace, Chamundi Hills, Brindavan Gardens fountain show.',
@@ -435,6 +464,7 @@ export const destinations: Destination[] = [
       'Day 5: Abu Dhabi day trip with BAPS Hindu Mandir.',
       'Day 6: Fly home.',
     ],
+    priceFrom: { amount: '35,300', currency: 'INR', pax: '6', per: 'adult' },
     included: [
       'Hotel with breakfast',
       'All transfers in a private vehicle',
@@ -564,6 +594,7 @@ export const destinations: Destination[] = [
       { name: 'Premium', note: 'Better rooms and views.' },
       { name: 'Luxury', note: 'Cinnamon hotels through the trip.' },
     ],
+    priceFrom: { amount: '385', currency: 'USD', pax: '8' },
     daysTitle: 'Your 8 days',
     days: [
       'Day 1: Land in Colombo. Drive to Sigiriya.',
@@ -612,6 +643,7 @@ export const destinations: Destination[] = [
       { name: 'Comfort', note: 'Good hotel with breakfast.' },
       { name: 'Premium', note: 'Resort and spa stay.' },
     ],
+    priceFrom: { amount: '23,596', currency: 'INR', pax: '6 to 9' },
     daysTitle: 'Your 5 days',
     days: [
       'Day 1: Land in Siem Reap. Relax.',
@@ -659,6 +691,7 @@ export const destinations: Destination[] = [
       { name: 'Premium', note: '4-star hotels through the trip.' },
       { name: 'Luxury', note: '5-star hotels through the trip.' },
     ],
+    priceFrom: { amount: '69,170', currency: 'INR', pax: '11 to 14' },
     daysSummary:
       'Manila city tour with lunch, then three days on Boracay with island hopping and a land tour, then Cebu with its twin city tour. Beach time built in every day.',
     included: [
@@ -703,6 +736,7 @@ export const destinations: Destination[] = [
       { name: 'Deluxe', note: 'Better hotels and rooms.' },
       { name: 'Luxury', note: 'Palace of the Lost City at Sun City.' },
     ],
+    priceFrom: { amount: '1,35,677', currency: 'INR', pax: '10' },
     daysSummary:
       'Johannesburg casino evening, two days at Sun City water park, morning and evening game drives at Mabula with all meals, Cango Caves and ostrich farm on the Garden Route, Knysna waterfront, then Cape Town: Table Mountain cable car, penguin colony, Cape of Good Hope, and the V and A Waterfront.',
     included: [

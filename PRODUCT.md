@@ -25,7 +25,7 @@ The website of IRL (In Real Life), a Kolhapur travel company selling India and i
 ## Operating Context
 
 - Enquiry flow: visitor picks a destination, taps a WhatsApp CTA ("Get My Kashmir Price on WhatsApp"), chats, gets a full day-wise plan with exact price within 24 hours, books with an advance (usually 30 percent), pays the rest in parts.
-- Supplier PDFs (Paryatan Tours, not in repo) hold pax-slab net pricing, seasonal windows, and cancellation terms. Pricing data NEVER reaches the site.
+- Supplier PDFs (Paryatan Tours, not in repo) hold pax-slab net pricing, seasonal windows, and cancellation terms. Net rates NEVER reach the site. The retail "from" rates that do appear come from the owner's own customer-facing brochures, not from these.
 - Trip tiers per destination: Budget / Comfort / Premium (some add Luxury). Never 3-star/4-star jargon as tier names.
 - India destinations: Kashmir, Ladakh, Kerala, Andaman, Himachal, Sikkim Darjeeling, Meghalaya, South India (Mysore Coorg Wayanad Ooty). World: Dubai, Bali, Thailand, Vietnam, Sri Lanka, Cambodia, Philippines, South Africa.
 - Full site copy (every page, every destination) was supplied by the owner on 2026-08-08 and lives in the site's data files; it is the copy of record.
@@ -35,7 +35,7 @@ The website of IRL (In Real Life), a Kolhapur travel company selling India and i
 - Pages: Home, 16 destination pages (one template), India Trips and World Trips listing pages, Plan My Trip (5-field form), How It Works (6 steps), About, Why Book With Us (7 points), Reviews, FAQ (12 questions), Contact.
 - Navigation: Home | India Trips | World Trips | How It Works | Reviews | About Us | Contact. Footer quick links add FAQ.
 - Global elements: rotating announcement bar, floating WhatsApp button on every page with the pre-filled message "Hi IRL, I want to plan a trip. Destination: ____. Number of people: ____. Month: ____.", footer with full contact block and the line "IRL is a Kolhapur based travel company. Every trip is planned by a real person, not an app."
-- NO PRICES anywhere on the site, ever: no package prices, no "starting from" figures, no tier prices, no third-party ticket amounts. The user confirmed this on 2026-08-08, overriding the price tables in the supplied copy (which are B2B net rates). Price lives only in the WhatsApp conversation and the office. The Plan My Trip budget dropdown (visitor stating their own budget) and the FAQ's "usually 30 percent advance" payment term are allowed; specific rupee/dollar amounts are not.
+- FROM PRICES ONLY (changed 2026-08-14, superseding the no-prices rule of 2026-08-08). Each destination may show ONE anchor rate, copied verbatim from the owner's print brochure so the site and the brochure never quote different numbers. Every price MUST ship with the group size it assumes, because the brochures anchor on 6 to 14 travellers depending on the destination and a couple pays roughly 25 percent more. A price without its basis is a misleading price. Flights are excluded from every rate and this must be stated. Still forbidden: per-tier price tables, net rates, third-party ticket amounts, and any implication that the anchor is the final quote. The exact price is still only given on WhatsApp. Prices are hardcoded in lib/destinations.ts and frozen at build time, so they need a manual edit and redeploy when rates move; lib/price.ts holds the one PRICES_UPDATED stamp shown to visitors.
 - Deliberately excluded, do not add: blog, payment gateway, login/accounts, downloadable package PDFs.
 - Forms have no backend (static export): submit composes a WhatsApp message and opens wa.me. Plan My Trip fields, exactly five: destination dropdown (+ "Not sure, suggest me"), month (+ "Flexible"), people (adults/children), budget-per-person dropdown, WhatsApp number.
 - Reviews policy: publish only real reviews. Sample cards must be visibly labelled as samples to replace. Never fabricate testimonials presented as genuine.
@@ -59,7 +59,7 @@ The website of IRL (In Real Life), a Kolhapur travel company selling India and i
 
 - Proof before beauty: the office, plain terms, and real faces appear early on every page.
 - Every page ends in a conversation: WhatsApp first, phone second.
-- Sell the experience, keep the price in conversation: emotional imagery leads; inclusions and honest exclusions are one scroll away; the exact price is always one tap away on WhatsApp.
+- Sell the experience, anchor the price, close in conversation: emotional imagery leads; a single honest "from" rate with its group-size basis tells the visitor whether the trip is in reach; inclusions and honest exclusions are one scroll away; the exact price is always one tap away on WhatsApp.
 - Plain words win: if a sentence would not be said aloud across a desk in Kolhapur, rewrite it.
 - Local is the moat: the office, the one person, the on-trip support differentiate IRL from every app.
 

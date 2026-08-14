@@ -3,6 +3,7 @@ import { PhotoPrint, SectionHead, TripCard, PlanTripButton, IconCheck } from '@/
 import { indiaTrips, worldTrips } from '@/lib/destinations';
 import { trustStrip, howItWorksShort, seasons, whyTrust, sampleReviews } from '@/lib/content';
 import { site } from '@/lib/site';
+import { fare, PRICES_UPDATED } from '@/lib/price';
 import { SeasonNow } from '@/components/season-now';
 
 
@@ -52,13 +53,13 @@ export default function HomePage() {
       {/* Destination grids */}
       <section className="section" id="india">
         <div className="container">
-          <SectionHead title="Where do you want to go?" lead="Every trip below is planned person to person and priced on WhatsApp." />
+          <SectionHead title="Where do you want to go?" lead="Every trip below is planned person to person. From prices are group rates, and your exact price comes on WhatsApp." />
           <h3 className="hand" style={{ color: 'var(--marigold)', fontSize: '1.4rem', marginBottom: '1.2rem' }}>
             India Trips
           </h3>
           <div className="grid-cards">
             {indiaTrips.map((d) => (
-              <TripCard key={d.slug} slug={d.slug} name={d.name} durationShort={d.durationShort} photo={d.photo} code={d.code} />
+              <TripCard key={d.slug} slug={d.slug} name={d.name} durationShort={d.durationShort} photo={d.photo} code={d.code} fare={fare(d.priceFrom)} />
             ))}
           </div>
           <h3 className="hand" style={{ color: 'var(--marigold)', fontSize: '1.4rem', margin: '2.5rem 0 1.2rem' }}>
@@ -66,9 +67,10 @@ export default function HomePage() {
           </h3>
           <div className="grid-cards">
             {worldTrips.map((d) => (
-              <TripCard key={d.slug} slug={d.slug} name={d.name} durationShort={d.durationShort} photo={d.photo} code={d.code} />
+              <TripCard key={d.slug} slug={d.slug} name={d.name} durationShort={d.durationShort} photo={d.photo} code={d.code} fare={fare(d.priceFrom)} />
             ))}
           </div>
+          <p className="fare-footnote">From prices are group rates. Prices updated {PRICES_UPDATED}.</p>
         </div>
       </section>
 

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { PhotoPrint, PlanTripButton, SectionHead, TripCard, IconCheck, IconMinus, IconChevron } from '@/components/ui';
 import { destinations, getDestination, indiaTrips, worldTrips, waMessageFor } from '@/lib/destinations';
+import { fare, GROUP_NOTE, PRICES_UPDATED } from '@/lib/price';
 
 export function generateStaticParams() {
   return destinations.map((d) => ({ slug: d.slug }));
@@ -35,8 +36,22 @@ export default async function TripPage({ params }: { params: Promise<{ slug: str
   const idx = pool.findIndex((x) => x.slug === d.slug);
   const more = [1, 2, 3].map((o) => pool[(idx + o) % pool.length]);
 
+  const f = fare(d.priceFrom);
+
+  /* Kashmir's groupNote IS the shared caveat, verbatim. The CTA now carries it
+     against the number, so Trip options must not print the same sentence twice.
+     Every other destination keeps its own note where it renders today: Kerala's
+     is a honeymoon offer and Dubai's is about visas, so neither belongs under a
+     price. */
+  const ownNote = d.groupNote === GROUP_NOTE ? undefined : d.groupNote;
+
+  /* Bound to the price, not to groupNote. Eight of the thirteen priced
+     destinations have no groupNote, and a from-price without this line
+     misleads a couple by roughly 25 percent. */
+  const fareCaveat = f ? GROUP_NOTE : null;
+
   const planNote =
-    d.groupNote ??
+    ownNote ??
     d.daysSummary ??
     `${d.duration}. Tell us your group size and month, and we send the full day-wise plan on WhatsApp.`;
 
@@ -72,7 +87,9 @@ export default async function TripPage({ params }: { params: Promise<{ slug: str
       {/* Facts as ticket stubs, then the intro */}
       <section className="section" style={{ paddingTop: '2.5rem' }}>
         <div className="container">
-          <div className="grid-2" style={{ gap: '1rem' }}>
+          {/* Two facts without a price, three with. The unpriced layout is the
+              shipping default, not a fallback. */}
+          <div className={f ? 'grid-3' : 'grid-2'} style={{ gap: '1rem' }}>
             <p className="stub" style={{ transform: 'rotate(-0.6deg)', margin: 0 }}>
               <span className="stub-label">Best time to go</span>
               {d.bestTime}
@@ -87,6 +104,22 @@ export default async function TripPage({ params }: { params: Promise<{ slug: str
                 </>
               ) : null}
             </p>
+            {f ? (
+              <p className="stub stub-fare" style={{ transform: 'rotate(-0.4deg)', margin: 0 }}>
+                <span className="stub-label">From</span>
+                <span className="fare-amount">
+                  <span className="fare-cur">{f.currency}</span>
+                  <span className="fare-num">{f.amount}</span>
+                  <span className="fare-unit">{f.unit}</span>
+                </span>
+                <span className="fare-basis">Based on {f.basis}</span>
+                <span className="fare-excl">
+                  <IconMinus />
+                  <span>Flights not included</span>
+                </span>
+                <span className="fare-stamp">Prices updated {PRICES_UPDATED}</span>
+              </p>
+            ) : null}
           </div>
           <p style={{ marginTop: '1.75rem', fontSize: '1.1rem' }}>{d.intro}</p>
         </div>
@@ -113,8 +146,8 @@ export default async function TripPage({ params }: { params: Promise<{ slug: str
               <p style={{ marginTop: '0.5rem' }}>{planNote}</p>
             </div>
           )}
-          {d.tiers.length > 0 && d.groupNote ? (
-            <p className="hand" style={{ color: 'var(--marigold)', fontSize: '1.15rem', marginTop: '1.5rem' }}>{d.groupNote}</p>
+          {d.tiers.length > 0 && ownNote ? (
+            <p className="hand" style={{ color: 'var(--marigold)', fontSize: '1.15rem', marginTop: '1.5rem' }}>{ownNote}</p>
           ) : null}
           <div style={{ marginTop: '1.75rem' }}>
             <PlanTripButton destination={d.name}>Get My {d.name} Price</PlanTripButton>
@@ -218,10 +251,12 @@ export default async function TripPage({ params }: { params: Promise<{ slug: str
                 durationShort={m.durationShort}
                 photo={m.photo}
                 code={m.code}
+                fare={fare(m.priceFrom)}
                 rotate={moreRotations[i % moreRotations.length]}
               />
             ))}
           </div>
+          <p className="fare-footnote">From prices are group rates. Prices updated {PRICES_UPDATED}.</p>
         </div>
       </section>
 
@@ -231,6 +266,15 @@ export default async function TripPage({ params }: { params: Promise<{ slug: str
           <div className="note" style={{ maxWidth: '44rem', marginInline: 'auto', textAlign: 'center', padding: '2.5rem 2rem' }}>
             <i className="tape" aria-hidden="true" />
             <h2>Get your exact price in one message.</h2>
+            {f ? (
+              <>
+                <p className="fare-recall hand">
+                  From {f.currency} {f.amount} {f.unit}, {f.basis}. Flights extra.
+                </p>
+                <div className="fare-rule" aria-hidden="true" />
+              </>
+            ) : null}
+            {fareCaveat ? <p className="fare-caveat">{fareCaveat}</p> : null}
             <p style={{ margin: '0.75rem auto 1.5rem' }}>Tell us your month and group size. We send the full plan on WhatsApp.</p>
             <PlanTripButton destination={d.name}>Get My {d.name} Price</PlanTripButton>
           </div>

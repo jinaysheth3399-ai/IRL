@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { TripCard, PlanTripButton } from '@/components/ui';
 import { indiaTrips } from '@/lib/destinations';
+import { fare, PRICES_UPDATED } from '@/lib/price';
 
 export const metadata: Metadata = {
   title: 'India Tour Packages from Kolhapur',
@@ -35,9 +36,11 @@ export default function IndiaTripsPage() {
                 photo={d.photo}
                 rotate={rotations[i % rotations.length]}
                 code={d.code}
+                fare={fare(d.priceFrom)}
               />
             ))}
           </div>
+          <p className="fare-footnote">From prices are group rates. Prices updated {PRICES_UPDATED}.</p>
         </div>
       </section>
 

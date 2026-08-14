@@ -45,6 +45,12 @@ typography:
     fontSize: "0.72rem"
     fontWeight: 700
     letterSpacing: "0.12em"
+  fare:
+    fontFamily: "Archivo, sans-serif"
+    fontSize: "1.55rem"
+    fontWeight: 900
+    lineHeight: 1.1
+    letterSpacing: "-0.02em"
 rounded:
   xs: "4px"
   sm: "6px"
@@ -169,6 +175,7 @@ A logo-pinned three-part palette - night, paper, lime - with olive-gray and leaf
 - **Title** (900, clamp(1.15rem, 2.2vw, 1.45rem), -0.01em): card and note h3; on paper it is ink.
 - **Body** (400, 1.0625rem, 1.65): Mukta; paragraphs capped at 68ch; leads and captions in Cloud or Ink Soft by surface.
 - **Label / Ticket data** (Chivo Mono 700, 0.72-0.85rem, 0.06-0.14em tracking, uppercase): route codes, durations, stub labels, stamps, captions, diary day markers, footer bottom line. The `.hand` utility applies the voice.
+- **Fare** (Archivo 900, 1.55rem, -0.02em, tabular-nums): the "from" price numeral, and the only place a display numeral appears outside a heading. Sized to sit above the title step and well under the page h1, so a destination page reads name first and price second. Exactly one per priced page, in the fare stub. Boarding-pass cards carry no fare numeral at all: there the price speaks at the label step so the destination name keeps the card.
 
 ### Named Rules
 **The Ticket Voice Rule.** Every piece of small uppercase metadata is Chivo Mono with wide tracking - never the body face. Conversely, body copy is never uppercase and never mono.

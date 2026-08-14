@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import type { ReactNode } from 'react';
 import { site, waLink } from '@/lib/site';
+import type { Fare } from '@/lib/price';
 
 /* Small icon set drawn in one grammar: 1.8 stroke, round caps. */
 
@@ -151,6 +152,7 @@ export function TripCard({
   durationShort,
   photo,
   code,
+  fare,
 }: {
   slug: string;
   name: string;
@@ -159,10 +161,16 @@ export function TripCard({
   caption?: string;
   rotate?: number; // accepted for compatibility; boarding passes sit straight
   code?: string;
+  /** Prepared by fare() so the pass and the page can never format one rate two ways. */
+  fare?: Fare | null;
 }) {
   return (
     <Link className="print-link" href={`/trips/${slug}/`}>
-      <span className="sr-only">{name} trip details</span>
+      {/* The visible card is aria-hidden, so the price has to be spoken here or
+          it is disclosed to sighted visitors only. Never the number alone. */}
+      <span className="sr-only">
+        {name} trip details.{fare ? ` ${fare.spoken}` : ''}
+      </span>
       <span aria-hidden="true">
         <span className="print pass" style={{ display: 'block' }}>
           <i className="corner tl" />
@@ -176,6 +184,14 @@ export function TripCard({
             </span>
             <span className="pass-name">{name}</span>
             <span className="pass-duration hand">{durationShort}</span>
+            {fare ? (
+              <span className="pass-fare hand">
+                <span className="pass-fare-amt">
+                  From {fare.currency} {fare.amount} {fare.unit}
+                </span>
+                <span className="pass-fare-basis">{fare.basis}, flights extra</span>
+              </span>
+            ) : null}
           </span>
         </span>
       </span>
