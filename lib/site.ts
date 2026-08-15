@@ -1,4 +1,8 @@
 // One place for every contact detail. Replace the PLACEHOLDER values before launch.
+
+/** Canonical origin. Vercel previews and www both resolve here. */
+export const siteUrl = 'https://inrealife.in';
+
 export const site = {
   name: 'IRL',
   fullName: 'IRL - In Real Life',

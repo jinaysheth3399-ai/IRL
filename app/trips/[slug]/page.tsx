@@ -3,6 +3,11 @@ import { notFound } from 'next/navigation';
 import { PhotoPrint, PlanTripButton, SectionHead, TripCard, IconCheck, IconMinus, IconChevron } from '@/components/ui';
 import { destinations, getDestination, indiaTrips, worldTrips, waMessageFor } from '@/lib/destinations';
 import { fare, GROUP_NOTE, PRICES_UPDATED } from '@/lib/price';
+import { siteUrl } from '@/lib/site';
+
+// Literal backslash for the JSON-LD escape; kept out of string literals so no
+// build step can eat it.
+const BACKSLASH = String.fromCharCode(92);
 
 export function generateStaticParams() {
   return destinations.map((d) => ({ slug: d.slug }));
@@ -12,9 +17,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const d = getDestination(slug);
   if (!d) return {};
+  const title = `${d.name} Tour Package from Kolhapur | ${d.durationShort} | IRL`;
+  const description = `${d.heroLine} Planned from Kolhapur. Exact price on WhatsApp.`;
   return {
-    title: { absolute: `${d.name} Tour Package from Kolhapur | ${d.durationShort} | IRL` },
-    description: `${d.heroLine} Planned person to person from Kolhapur. Get your exact price on WhatsApp.`,
+    title: { absolute: title },
+    description,
+    openGraph: { title, description, images: [d.photo] },
   };
 }
 
@@ -50,6 +58,48 @@ export default async function TripPage({ params }: { params: Promise<{ slug: str
      misleads a couple by roughly 25 percent. */
   const fareCaveat = f ? GROUP_NOTE : null;
 
+  /* Product with an AggregateOffer: lowPrice is exactly what a "from" rate is,
+     so the schema never claims the anchor is the final quote. The basis and the
+     flights exclusion ride in the description for the same honesty reason the
+     visible stub carries them. Unpriced destinations get no offer at all. */
+  const pageUrl = `${siteUrl}/trips/${d.slug}/`;
+  const region = d.region === 'india' ? 'India Trips' : 'World Trips';
+  const regionPath = d.region === 'india' ? '/india-trips/' : '/world-trips/';
+  const tripJsonLd = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'Product',
+        name: `${d.name} Tour Package from Kolhapur (${d.durationShort})`,
+        description: d.priceFrom
+          ? `${d.heroLine} From ${f!.currency} ${f!.amount} ${f!.unit}, based on ${f!.basis}, flights not included. Exact price on WhatsApp.`
+          : `${d.heroLine} Exact price on WhatsApp.`,
+        image: `${siteUrl}${d.photo}`,
+        url: pageUrl,
+        brand: { '@type': 'Brand', name: 'IRL - In Real Life' },
+        ...(d.priceFrom
+          ? {
+              offers: {
+                '@type': 'AggregateOffer',
+                lowPrice: Number(d.priceFrom.amount.replace(/,/g, '')),
+                priceCurrency: d.priceFrom.currency,
+                availability: 'https://schema.org/InStock',
+                url: pageUrl,
+              },
+            }
+          : {}),
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: `${siteUrl}/` },
+          { '@type': 'ListItem', position: 2, name: region, item: `${siteUrl}${regionPath}` },
+          { '@type': 'ListItem', position: 3, name: d.name, item: pageUrl },
+        ],
+      },
+    ],
+  };
+
   const planNote =
     ownNote ??
     d.daysSummary ??
@@ -57,6 +107,10 @@ export default async function TripPage({ params }: { params: Promise<{ slug: str
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(tripJsonLd).replace(/</g, BACKSLASH + 'u003c') }}
+      />
       {/* Opening spread: the album page for this trip */}
       <section className="section" style={{ paddingTop: 'clamp(2.5rem, 6vw, 4.5rem)' }}>
         <div className="container grid-2" style={{ alignItems: 'center', gap: '3rem' }}>

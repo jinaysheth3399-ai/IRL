@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Archivo, Chivo_Mono, Mukta } from 'next/font/google';
 import './globals.css';
+import { site, siteUrl } from '@/lib/site';
 import { AnnouncementBar, Footer } from '@/components/chrome';
 import { Header } from '@/components/site-header';
 import { FloatingWhatsApp } from '@/components/floating-wa';
@@ -28,12 +29,50 @@ const body = Mukta({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
-    default: 'IRL Kolhapur | Travel Agency for India and International Tour Packages',
+    // Under 60 characters so it survives the SERP uncut; city and category first.
+    default: 'Travel Agency in Kolhapur for India and World Trips | IRL',
     template: '%s | IRL',
   },
   description:
     "Kolhapur's own travel company. Kashmir, Kerala, Dubai, Bali and more. Tell us your budget, we plan your trip. WhatsApp us today.",
+  // './' resolves per page, so every route canonicalises to its own apex URL
+  // (www 308s here; Vercel previews would otherwise index as duplicates).
+  alternates: { canonical: './' },
+  openGraph: {
+    type: 'website',
+    siteName: site.fullName,
+    locale: 'en_IN',
+    images: ['/photos/hero.jpg'],
+  },
+  twitter: { card: 'summary_large_image' },
+};
+
+// Real facts only: the address, hours and logo are confirmed. The phone and the
+// social links are still placeholders in lib/site.ts, so they stay out of the
+// schema until they are real; a fabricated NAP is worse than a sparse one.
+const agencyJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'TravelAgency',
+  name: site.fullName,
+  url: siteUrl,
+  image: `${siteUrl}/brand/irl-lockup.png`,
+  slogan: site.tagline,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '334, Office No. 2A, 2nd Floor, Trade Center, Station Road',
+    addressLocality: 'Kolhapur',
+    addressRegion: 'Maharashtra',
+    postalCode: '416001',
+    addressCountry: 'IN',
+  },
+  openingHoursSpecification: {
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+    opens: '10:00',
+    closes: '20:00',
+  },
 };
 
 const contract = `
@@ -54,6 +93,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       suppressHydrationWarning
     >
       <body>
+        {/* In the initial server-rendered HTML, as structured-data guidance
+            requires; escaped so nothing in the data can close the script tag. */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(agencyJsonLd).replace(/</g, '\\u003c') }}
+        />
         {/* Runs before first paint: a repeat visitor in the same session must never
             see a flash of the intro before React can take it down. */}
         <script
