@@ -139,7 +139,7 @@ export const guestReviews: GuestReview[] = [
       'We love the name In Real Life. The name is new, but for my family and friends the service is at least 15 years old. If it is a holiday, it is this same team. That is the trust we have in their comfort and execution.',
   },
   {
-    name: 'Yugandhara Lad',
+    name: 'Yugandhara and John',
     photo: '/photos/reviews/yugandhara.jpg',
     text:
       'We book all our holidays only through the IRL team. They understand our taste and the exclusivity we want. What we need is trust, and with IRL we have the comfort to hand over our travel plans completely, anywhere in the world.',

@@ -204,6 +204,13 @@ export default async function TripPage({ params }: { params: Promise<{ slug: str
           {d.tiers.length > 0 && ownNote ? (
             <p className="hand" style={{ color: 'var(--marigold)', fontSize: '1.15rem', marginTop: '1.5rem' }}>{ownNote}</p>
           ) : null}
+          {!d.days ? (
+            <p className="customize-night">
+              Every itinerary here is a standard {d.name} plan. Want more days, different hotels, or another route?{' '}
+              <Link href={`/plan-my-trip/?destination=${encodeURIComponent(d.name)}`}>Tell us what to change</Link>. We
+              build the trip around your group.
+            </p>
+          ) : null}
           <div style={{ marginTop: '1.75rem' }}>
             <PlanTripButton destination={d.name}>Get My {d.name} Price</PlanTripButton>
           </div>

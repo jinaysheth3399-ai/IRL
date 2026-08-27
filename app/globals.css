@@ -1586,6 +1586,16 @@ details.fold[open] summary .chev {
   text-decoration-color: var(--leaf);
 }
 
+/* Night-ground variant for the five destinations without a day-wise plan, so
+   every trip page carries the line exactly once. Links go lime on night. */
+.customize-night {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px dashed rgba(166, 212, 32, 0.35);
+  color: var(--cloud);
+  max-width: 44rem;
+}
+
 /* ---- Guest review byline: name, optional tag, optional photo. Paper surface. ---- */
 
 .review-byline {
