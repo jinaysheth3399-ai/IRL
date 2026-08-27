@@ -20,7 +20,7 @@ The website of IRL (In Real Life), a Kolhapur travel company selling India and i
 
 ## Positioning
 
-"Every trip is planned by a real person, not an app." No call centre: the person who plans the trip answers the phone during the trip. Local office you can walk into any day, 10 am to 8 pm. Counter-position to MakeMyTrip-style aggregators; same lane as Kesari/Veena World but local and personal. IRL frames itself as an experience company: it sells the memory the family brings home, then backs it with proof and support.
+"Every trip is planned by a real person, not an app." No call centre: the person who plans the trip answers the phone during the trip. Local office you can walk into any day, 10 am to 7 pm. Counter-position to MakeMyTrip-style aggregators; same lane as Kesari/Veena World but local and personal. IRL frames itself as an experience company: it sells the memory the family brings home, then backs it with proof and support.
 
 ## Operating Context
 
@@ -38,12 +38,12 @@ The website of IRL (In Real Life), a Kolhapur travel company selling India and i
 - FROM PRICES ONLY (changed 2026-08-14, superseding the no-prices rule of 2026-08-08). Each destination may show ONE anchor rate, copied verbatim from the owner's print brochure so the site and the brochure never quote different numbers. Every price MUST ship with the group size it assumes, because the brochures anchor on 6 to 14 travellers depending on the destination and a couple pays roughly 25 percent more. A price without its basis is a misleading price. Flights are excluded from every rate and this must be stated. Still forbidden: per-tier price tables, net rates, third-party ticket amounts, and any implication that the anchor is the final quote. The exact price is still only given on WhatsApp. Prices are hardcoded in lib/destinations.ts and frozen at build time, so they need a manual edit and redeploy when rates move; lib/price.ts holds the one PRICES_UPDATED stamp shown to visitors.
 - Deliberately excluded, do not add: blog, payment gateway, login/accounts, downloadable package PDFs.
 - Forms have no backend (static export): submit composes a WhatsApp message and opens wa.me. Plan My Trip fields, exactly five: destination dropdown (+ "Not sure, suggest me"), month (+ "Flexible"), people (adults/children), budget-per-person dropdown, WhatsApp number.
-- Reviews policy: publish only real reviews. Sample cards must be visibly labelled as samples to replace. Never fabricate testimonials presented as genuine.
+- Reviews policy: publish only real reviews, never fabricate testimonials. Three real guest reviews (Akash Korgaonkar, Rounak Patil, Yugandhara Lad) were supplied by the owner on 2026-08-15, lightly edited for clarity only, and are live in lib/content.ts guestReviews. Guest photos to follow; the photo field renders when filled.
 
 ## Brand Commitments
 
 - Name: IRL (In Real Life). Tagline: "We plan. You travel." Subline: "Holiday packages from Kolhapur to all of India and the world. Tell us your budget. We build your trip."
-- Contacts live in one config constant, `lib/site.ts`. Real: the office address (334, Office No. 2A, 2nd Floor, Trade Center, Station Road, Kolhapur 416001), timings (Monday to Sunday, 10 am to 8 pm), phone +91 83246 01955 and email holidays@inrealife.in (owner-confirmed 2026-08-15). WhatsApp uses the same number pending confirmation of a separate WhatsApp Business line. Still PLACEHOLDER: Instagram/Facebook/YouTube links. Note: the seo/ content package claims hours are 10 am to 7 pm; unresolved with the owner, site keeps 8 pm.
+- Contacts live in one config constant, `lib/site.ts`. Real: the office address (334, Office No. 2A, 2nd Floor, Trade Center, Station Road, Kolhapur 416001), timings (Monday to Sunday, 10 am to 7 pm; owner corrected from 8 pm on 2026-08-15), phone +91 83246 01955 and email holidays@inrealife.in (owner-confirmed 2026-08-15). Owner confirmed one number for phone and WhatsApp for now. Still PLACEHOLDER: Instagram/Facebook/YouTube links.
 - Voice: simple English, short sentences, no jargon, NO EM DASHES anywhere in copy or UI text. The site is English only: the owner removed all Marathi copy on 2026-08-10, so do not reintroduce it. Button labels from the copy doc: Plan My Trip on WhatsApp | Get My Price | See All Trips | Start Planning Now | Chat With Us.
 - SEO title pattern: "[Destination] Tour Package from Kolhapur | [Duration] | IRL" (no prices in metas).
 - Logo (supplied 2026-08-08, binding): black "IRL" wordmark, warm off-white panel, chartreuse lime paper-plane with contrail, "IN REAL LIFE" letterspaced. The site palette is pinned to it: near-black night ground, warm paper, lime accent, plus harmonizing supports (olive-gray secondary text, deep leaf green for green text on paper). User confirmed extra harmonizing colors are welcome. Logo file itself not yet in repo; owner to supply.
@@ -52,7 +52,7 @@ The website of IRL (In Real Life), a Kolhapur travel company selling India and i
 ## Evidence on Hand
 
 - Destination photography: 17 verified placeholder photos in `public/photos/` (Unsplash + Wikimedia Commons, credits in `public/photos/credits.json`); owner replaces with real guest photos over time.
-- Not yet available, never fabricate: real reviews, guest photos/videos, founder name/photo/bio, real traveller counts (numbers strip on About stays as placeholders), Google Reviews embed. These render as clearly labelled placeholders on the owner's replacement list.
+- Not yet available, never fabricate: guest trip photos/videos, review headshots, Google Reviews embed, real social links. Reviews, founder bio and the numbers strip went real in August 2026.
 - Cancellation/payment terms come from supplier PDFs; FAQ states them in plain words without amounts.
 
 ## Product Principles

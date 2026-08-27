@@ -19,7 +19,7 @@ export const site = {
   // Real inbox, owner-confirmed 2026-08-15.
   email: 'holidays@inrealife.in',
   address: '334, Office No. 2A, 2nd Floor, Trade Center, Station Road, Kolhapur 416001',
-  timings: 'Monday to Sunday, 10 am to 8 pm',
+  timings: 'Monday to Sunday, 10 am to 7 pm',
   landmarkLine: 'We are in Trade Center on Station Road, 2nd floor. Walk-ins welcome, no appointment needed.',
 
   // PLACEHOLDER: social links.

@@ -1586,6 +1586,29 @@ details.fold[open] summary .chev {
   text-decoration-color: var(--leaf);
 }
 
+/* ---- Guest review byline: name, optional tag, optional photo. Paper surface. ---- */
+
+.review-byline {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-top: 0.7rem;
+  color: var(--ink-soft);
+  font-weight: 700;
+}
+
+.review-photo {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  /* Faces sit in the upper part of all three supplied photos. */
+  object-position: center 30%;
+  border-radius: 6px;
+  border: 1px solid rgba(20, 19, 14, 0.3);
+  margin-bottom: 0.9rem;
+}
+
 /* Validation message under a field. Sits on paper, so it takes the paper-side
    warning red rather than anything from the night palette. */
 .field-error {

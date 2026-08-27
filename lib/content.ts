@@ -2,7 +2,7 @@
 
 export const announcements = [
   'Planning a Diwali trip? Prices go up in October. Book early.',
-  'Office in Kolhapur. Walk in any day, 10 am to 8 pm.',
+  'Office in Kolhapur. Walk in any day, 10 am to 7 pm.',
 ];
 
 export const trustStrip = [
@@ -114,22 +114,35 @@ export const whyBookPoints = [
   },
 ];
 
-// Sample reviews: visibly labelled as samples on the site. Replace with real reviews only.
-export const sampleReviews = [
+// Real guest reviews, supplied by the owner on 2026-08-15 and lightly edited for
+// clarity only; the voice and every claim are the guest's own. `photo` is filled
+// in as the owner sends each guest's photo.
+export type GuestReview = {
+  name: string;
+  tag?: string; // a short line under the name, only when the guest gave one
+  text: string;
+  photo?: string; // e.g. '/photos/reviews/akash.jpg'
+};
+
+export const guestReviews: GuestReview[] = [
   {
-    name: 'Sample: guest name, Kolhapur',
-    trip: 'Destination, month and year',
-    text: 'Two to three lines in the guest’s own words go here. Collect real reviews after every trip and replace this card.',
+    name: 'Akash Korgaonkar',
+    photo: '/photos/reviews/akash.jpg',
+    tag: 'Ironman athlete',
+    text:
+      'Koustubh and his team have been planning all our family vacations for years. Happy to see them open this up to the rest of Kolhapur. If it is a vacation, it has to be IRL.',
   },
   {
-    name: 'Sample: guest name, Sangli',
-    trip: 'Destination, month and year',
-    text: 'A real photo from the guest’s trip goes above these lines. Do not publish sample reviews on the live site.',
+    name: 'Rounak Patil',
+    photo: '/photos/reviews/rounak.jpg',
+    text:
+      'We love the name In Real Life. The name is new, but for my family and friends the service is at least 15 years old. If it is a holiday, it is this same team. That is the trust we have in their comfort and execution.',
   },
   {
-    name: 'Sample: guest name, Ichalkaranji',
-    trip: 'Destination, month and year',
-    text: 'A 20-second phone video from a returning guest beats ten written reviews. Ask for one after every trip.',
+    name: 'Yugandhara Lad',
+    photo: '/photos/reviews/yugandhara.jpg',
+    text:
+      'We book all our holidays only through the IRL team. They understand our taste and the exclusivity we want. What we need is trust, and with IRL we have the comfort to hand over our travel plans completely, anywhere in the world.',
   },
 ];
 

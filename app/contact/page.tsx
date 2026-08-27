@@ -6,7 +6,7 @@ import { EnquiryForm } from '@/components/enquiry-form';
 export const metadata: Metadata = {
   title: 'Contact IRL Kolhapur',
   description:
-    'Call, WhatsApp, email, or walk into the IRL office in Kolhapur. Open Monday to Sunday, 10 am to 8 pm. Come plan your trip face to face.',
+    'Call, WhatsApp, email, or walk into the IRL office in Kolhapur. Open Monday to Sunday, 10 am to 7 pm. Come plan your trip face to face.',
 };
 
 const factLabel = { color: 'var(--kumkum-deep)', fontWeight: 700, fontSize: '1.02rem' } as const;

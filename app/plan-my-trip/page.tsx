@@ -27,7 +27,7 @@ export default function PlanMyTripPage() {
 
           <div style={{ maxWidth: '40rem', marginInline: 'auto', marginTop: '2.75rem', textAlign: 'center' }}>
             <p style={{ marginInline: 'auto', color: 'var(--cream-soft)' }}>
-              In a hurry? WhatsApp us directly or call us. Office open 10 am to 8 pm, all days.
+              In a hurry? WhatsApp us directly or call us. Office open 10 am to 7 pm, all days.
             </p>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.9rem', justifyContent: 'center', marginTop: '1.1rem' }}>
               <WaButton message={defaultWaMessage}>Plan My Trip on WhatsApp</WaButton>

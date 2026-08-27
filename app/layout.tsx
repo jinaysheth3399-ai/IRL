@@ -73,7 +73,7 @@ const agencyJsonLd = {
     '@type': 'OpeningHoursSpecification',
     dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
     opens: '10:00',
-    closes: '20:00',
+    closes: '19:00',
   },
 };
 

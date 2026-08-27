@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { PhotoPrint, SectionHead, TripCard, PlanTripButton, IconCheck } from '@/components/ui';
 import { indiaTrips, worldTrips } from '@/lib/destinations';
-import { trustStrip, howItWorksShort, seasons, whyTrust, sampleReviews } from '@/lib/content';
+import { trustStrip, howItWorksShort, seasons, whyTrust, guestReviews } from '@/lib/content';
 import { site } from '@/lib/site';
 import { fare, PRICES_UPDATED } from '@/lib/price';
 import { SeasonNow } from '@/components/season-now';
@@ -136,18 +136,25 @@ export default function HomePage() {
       {/* Reviews sample */}
       <section className="section">
         <div className="container">
-          <SectionHead title="What our travellers say" lead="These cards are samples. They will be replaced with real reviews, real names and real trip photos." />
+          <SectionHead title="What our travellers say" lead="Real guests, in their own words." />
           <div className="grid-3">
-            {sampleReviews.map((r, i) => (
+            {guestReviews.map((r, i) => (
               <figure key={r.name} className="note" style={{ transform: `rotate(${[-0.6, 0.7, -0.4][i]}deg)` }}>
                 <i className="tape" aria-hidden="true" />
+                {r.photo ? <img className="review-photo" src={r.photo} alt={r.name} loading="lazy" /> : null}
                 <blockquote>
                   <p>&ldquo;{r.text}&rdquo;</p>
                 </blockquote>
-                <figcaption className="hand" style={{ marginTop: '0.7rem', color: 'var(--ink-soft)', fontWeight: 700 }}>
-                  {r.name}
-                  <br />
-                  <span style={{ fontWeight: 400 }}>{r.trip}</span>
+                <figcaption className="review-byline hand">
+                  <span>
+                    {r.name}
+                    {r.tag ? (
+                      <>
+                        <br />
+                        <span style={{ fontWeight: 400 }}>{r.tag}</span>
+                      </>
+                    ) : null}
+                  </span>
                 </figcaption>
               </figure>
             ))}
