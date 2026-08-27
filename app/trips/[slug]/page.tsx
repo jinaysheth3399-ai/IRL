@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { PhotoPrint, PlanTripButton, SectionHead, TripCard, IconCheck, IconMinus, IconChevron } from '@/components/ui';
 import { destinations, getDestination, indiaTrips, worldTrips, waMessageFor } from '@/lib/destinations';
@@ -204,15 +203,19 @@ export default async function TripPage({ params }: { params: Promise<{ slug: str
           {d.tiers.length > 0 && ownNote ? (
             <p className="hand" style={{ color: 'var(--marigold)', fontSize: '1.15rem', marginTop: '1.5rem' }}>{ownNote}</p>
           ) : null}
-          {!d.days ? (
-            <p className="customize-night">
-              Every itinerary here is a standard {d.name} plan. Want more days, different hotels, or another route?{' '}
-              <Link href={`/plan-my-trip/?destination=${encodeURIComponent(d.name)}`}>Tell us what to change</Link>. We
-              build the trip around your group.
+          {/* The one message this section must land: nothing here is fixed. A
+              stamped paper note with its own headline, not a footnote. */}
+          <div className="note" style={{ maxWidth: '44rem', marginTop: '1.75rem', transform: 'rotate(-0.4deg)' }}>
+            <i className="tape" aria-hidden="true" />
+            <span className="stamp">We customize</span>
+            <h3>A starting point, not a fixed package.</h3>
+            <p style={{ marginTop: '0.5rem' }}>
+              Every {d.name} itinerary here is our standard plan. More days, better hotels, another route, special food.
+              Tell us what to change and we build the trip around your group.
             </p>
-          ) : null}
+          </div>
           <div style={{ marginTop: '1.75rem' }}>
-            <PlanTripButton destination={d.name}>Get My {d.name} Price</PlanTripButton>
+            <PlanTripButton destination={d.name}>Customize My {d.name} Trip</PlanTripButton>
           </div>
         </div>
       </section>
@@ -223,6 +226,7 @@ export default async function TripPage({ params }: { params: Promise<{ slug: str
           <div className="container">
             <div className="note" style={{ maxWidth: '56rem' }}>
               <i className="tape" aria-hidden="true" />
+              <span className="stamp">Standard plan</span>
               <details className="fold" open>
                 <summary>
                   <h3 style={{ fontSize: '1.25rem' }}>{d.daysTitle}</h3>
@@ -240,11 +244,6 @@ export default async function TripPage({ params }: { params: Promise<{ slug: str
                   })}
                 </ul>
               </details>
-              <p className="customize-line">
-                This is our standard {d.name} plan. Want more days, different hotels, or another route?{' '}
-                <Link href={`/plan-my-trip/?destination=${encodeURIComponent(d.name)}`}>Tell us what to change</Link>. We
-                build the trip around your group.
-              </p>
             </div>
           </div>
         </section>

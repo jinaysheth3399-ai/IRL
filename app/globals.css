@@ -1565,37 +1565,6 @@ details.fold[open] summary .chev {
   color: var(--cloud);
 }
 
-/* ---- Standard plan, customized: the tear-off line under the day-wise plan.
-   Paper surface, so the link is leaf, never lime. ---- */
-
-.customize-line {
-  margin-top: 1.1rem;
-  padding-top: 0.9rem;
-  border-top: 1px dashed rgba(20, 19, 14, 0.3);
-  color: var(--ink);
-}
-
-.customize-line a {
-  color: var(--leaf);
-  font-weight: 700;
-  text-decoration-color: rgba(74, 112, 0, 0.5);
-  text-underline-offset: 3px;
-}
-
-.customize-line a:hover {
-  text-decoration-color: var(--leaf);
-}
-
-/* Night-ground variant for the five destinations without a day-wise plan, so
-   every trip page carries the line exactly once. Links go lime on night. */
-.customize-night {
-  margin-top: 1.5rem;
-  padding-top: 1rem;
-  border-top: 1px dashed rgba(166, 212, 32, 0.35);
-  color: var(--cloud);
-  max-width: 44rem;
-}
-
 /* ---- Guest review byline: name, optional tag, optional photo. Paper surface. ---- */
 
 .review-byline {
