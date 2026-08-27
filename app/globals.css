@@ -1565,6 +1565,27 @@ details.fold[open] summary .chev {
   color: var(--cloud);
 }
 
+/* ---- Standard plan, customized: the tear-off line under the day-wise plan.
+   Paper surface, so the link is leaf, never lime. ---- */
+
+.customize-line {
+  margin-top: 1.1rem;
+  padding-top: 0.9rem;
+  border-top: 1px dashed rgba(20, 19, 14, 0.3);
+  color: var(--ink);
+}
+
+.customize-line a {
+  color: var(--leaf);
+  font-weight: 700;
+  text-decoration-color: rgba(74, 112, 0, 0.5);
+  text-underline-offset: 3px;
+}
+
+.customize-line a:hover {
+  text-decoration-color: var(--leaf);
+}
+
 /* Validation message under a field. Sits on paper, so it takes the paper-side
    warning red rather than anything from the night palette. */
 .field-error {

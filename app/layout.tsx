@@ -49,9 +49,9 @@ export const metadata: Metadata = {
   twitter: { card: 'summary_large_image' },
 };
 
-// Real facts only: the address, hours and logo are confirmed. The phone and the
-// social links are still placeholders in lib/site.ts, so they stay out of the
-// schema until they are real; a fabricated NAP is worse than a sparse one.
+// Real facts only: address, hours, logo, phone and email are owner-confirmed.
+// The social links are still placeholders in lib/site.ts, so they stay out of
+// the schema until they are real; a fabricated NAP is worse than a sparse one.
 const agencyJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'TravelAgency',
@@ -59,6 +59,8 @@ const agencyJsonLd = {
   url: siteUrl,
   image: `${siteUrl}/brand/irl-lockup.png`,
   slogan: site.tagline,
+  telephone: '+918324601955',
+  email: site.email,
   address: {
     '@type': 'PostalAddress',
     streetAddress: '334, Office No. 2A, 2nd Floor, Trade Center, Station Road',

@@ -19,7 +19,7 @@ export default function WorldTripsPage() {
         <div className="container">
           <h1>World Trips</h1>
           <p style={{ marginTop: '1rem', color: 'var(--cream-soft)', fontSize: '1.15rem' }}>
-            Eight trips across the world, with full visa and flight help from our Kolhapur office.
+            Eight trips across the world, with full visa and flight help from our Kolhapur office. Every plan is a standard itinerary that we customize: days, hotels, route and food, built around your group.
           </p>
         </div>
       </section>

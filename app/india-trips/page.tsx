@@ -19,7 +19,7 @@ export default function IndiaTripsPage() {
         <div className="container">
           <h1>India Trips</h1>
           <p style={{ marginTop: '1rem', color: 'var(--cream-soft)', fontSize: '1.15rem' }}>
-            Eight trips across India, planned person to person from Kolhapur.
+            Eight trips across India, planned person to person from Kolhapur. Every plan is a standard itinerary that we customize: days, hotels, route and food, built around your group.
           </p>
         </div>
       </section>

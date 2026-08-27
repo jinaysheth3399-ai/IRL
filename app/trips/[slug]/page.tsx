@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { PhotoPrint, PlanTripButton, SectionHead, TripCard, IconCheck, IconMinus, IconChevron } from '@/components/ui';
 import { destinations, getDestination, indiaTrips, worldTrips, waMessageFor } from '@/lib/destinations';
@@ -232,6 +233,11 @@ export default async function TripPage({ params }: { params: Promise<{ slug: str
                   })}
                 </ul>
               </details>
+              <p className="customize-line">
+                This is our standard {d.name} plan. Want more days, different hotels, or another route?{' '}
+                <Link href={`/plan-my-trip/?destination=${encodeURIComponent(d.name)}`}>Tell us what to change</Link>. We
+                build the trip around your group.
+              </p>
             </div>
           </div>
         </section>

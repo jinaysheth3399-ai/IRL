@@ -10,13 +10,14 @@ export const site = {
   subline: 'Holiday packages from Kolhapur to all of India and the world. Tell us your budget. We build your trip.',
   city: 'Kolhapur',
 
-  // PLACEHOLDER: real phone number, digits only for links, pretty for display.
-  phoneDisplay: '98XXX XXXXX',
-  phoneLink: 'tel:+919800000000',
-  // PLACEHOLDER: WhatsApp number in international format, digits only.
-  whatsappNumber: '919800000000',
-  // PLACEHOLDER: office email.
-  email: 'hello@irltravel.in',
+  // Real number, owner-confirmed 2026-08-15.
+  phoneDisplay: '83246 01955',
+  phoneLink: 'tel:+918324601955',
+  // Same number for WhatsApp until the owner says there is a separate
+  // WhatsApp Business line; the old value was a fabricated placeholder.
+  whatsappNumber: '918324601955',
+  // Real inbox, owner-confirmed 2026-08-15.
+  email: 'holidays@inrealife.in',
   address: '334, Office No. 2A, 2nd Floor, Trade Center, Station Road, Kolhapur 416001',
   timings: 'Monday to Sunday, 10 am to 8 pm',
   landmarkLine: 'We are in Trade Center on Station Road, 2nd floor. Walk-ins welcome, no appointment needed.',
