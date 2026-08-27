@@ -207,12 +207,12 @@ export const aboutEnglish = [
 // Owner-supplied facts (2026-08-10). The 1,00,000+ figure is the team's record across
 // their years in the trade, not IRL's own count, and the copy says so plainly.
 export const founder = {
-  name: 'Kousutbh Rajepandhare',
+  name: 'Koustubh Rajepandhare',
   role: 'Founder, IRL',
   photo: '/photos/founder.jpg',
   lead: 'Thirty countries in ten years, and still counting.',
   story: [
-    'Kousutbh has spent the last ten years on the road. More than 30 countries so far, most of them planned the same way he now plans yours: by hand, one detail at a time.',
+    'Koustubh has spent the last ten years on the road. More than 30 countries so far, most of them planned the same way he now plans yours: by hand, one detail at a time.',
     'He is not doing this alone. The team behind IRL has 20 years of combined experience in the travel industry, and between them they have planned and managed trips for more than 1,00,000 travellers.',
     'For most of those years the work happened quietly in the background. The team built trips for travel agents, who then sold them onward. The families taking the holiday never met the people who designed it. IRL exists to close that gap. Now you talk to the people who actually build your trip, and nobody sits in between.',
     'Kolhapur is where he started out. So it is where IRL starts too.',
