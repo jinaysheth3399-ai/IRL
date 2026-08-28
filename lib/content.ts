@@ -128,21 +128,23 @@ export const guestReviews: GuestReview[] = [
   {
     name: 'Akash Korgaonkar',
     photo: '/photos/reviews/akash.jpg',
-    tag: 'Ironman athlete',
+    tag: 'Ruggedian, Kolhapur',
     text:
       'Koustubh and his team have been planning all our family vacations for years. Happy to see them open this up to the rest of Kolhapur. If it is a vacation, it has to be IRL.',
   },
   {
     name: 'Rounak Patil',
     photo: '/photos/reviews/rounak.jpg',
+    tag: 'Government contractor, Kolhapur',
     text:
       'We love the name In Real Life. The name is new, but for my family and friends the service is at least 15 years old. If it is a holiday, it is this same team. That is the trust we have in their comfort and execution.',
   },
   {
     name: 'Yugandhara and John',
     photo: '/photos/reviews/yugandhara.jpg',
+    tag: 'CEO, Vitualist, Mumbai',
     text:
-      'We book all our holidays only through the IRL team. They understand our taste and the exclusivity we want. What we need is trust, and with IRL we have the comfort to hand over our travel plans completely, anywhere in the world.',
+      'We book all our holidays only through the IRL team. They understand our taste and the exclusivity we want. What we need is trust, and with IRL we have the comfort to hand over our travel plans completely, anywhere in the world. We are based in Mumbai, but for holidays it is always IRL. Happy to see them open their new office in Kolhapur, which is my native place too.',
   },
 ];
 
