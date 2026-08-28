@@ -59,7 +59,7 @@ const agencyJsonLd = {
   url: siteUrl,
   image: `${siteUrl}/brand/irl-lockup.png`,
   slogan: site.tagline,
-  telephone: '+918324601955',
+  telephone: '+919324601955',
   email: site.email,
   address: {
     '@type': 'PostalAddress',

@@ -11,11 +11,11 @@ export const site = {
   city: 'Kolhapur',
 
   // Real number, owner-confirmed 2026-08-15.
-  phoneDisplay: '83246 01955',
-  phoneLink: 'tel:+918324601955',
+  phoneDisplay: '93246 01955',
+  phoneLink: 'tel:+919324601955',
   // Same number for WhatsApp until the owner says there is a separate
   // WhatsApp Business line; the old value was a fabricated placeholder.
-  whatsappNumber: '918324601955',
+  whatsappNumber: '919324601955',
   // Real inbox, owner-confirmed 2026-08-15.
   email: 'holidays@inrealife.in',
   address: '334, Office No. 2A, 2nd Floor, Trade Center, Station Road, Kolhapur 416001',
