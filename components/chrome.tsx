@@ -59,6 +59,8 @@ export function Footer() {
               <br />
               <Link href="/faq/">FAQ</Link>
               <br />
+              <Link href="/franchise/">Become a Partner</Link>
+              <br />
               <Link href="/contact/">Contact</Link>
             </p>
             <h3 style={{ marginTop: '1.2rem' }}>Follow us</h3>
