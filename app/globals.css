@@ -438,6 +438,22 @@ a.print-link:hover .caption {
   box-shadow: 0 10px 26px rgba(166, 212, 32, 0.3);
 }
 
+/* The Leaf Translation Rule: lime lives on night, leaf lives on paper. This is
+   the primary action for a button sitting on a paper surface, where btn-primary's
+   lime would be the one green DESIGN.md says never lands there. Built like the
+   other two variants, with the shadow tinted to its own green. */
+.btn-leaf {
+  background: var(--leaf);
+  color: var(--paper);
+  box-shadow: 0 6px 18px rgba(74, 112, 0, 0.28);
+}
+
+.btn-leaf:hover {
+  background: #3d5c00;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 26px rgba(74, 112, 0, 0.36);
+}
+
 .btn-ghost {
   background: transparent;
   color: var(--paper);
