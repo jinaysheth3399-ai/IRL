@@ -59,7 +59,7 @@ export function Footer() {
               <br />
               <Link href="/faq/">FAQ</Link>
               <br />
-              <Link href="/franchise/">Become a Partner</Link>
+              <Link href="/franchise/">Digital Franchise</Link>
               <br />
               <Link href="/contact/">Contact</Link>
             </p>
