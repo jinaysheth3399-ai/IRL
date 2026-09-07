@@ -2,14 +2,20 @@
 
 import { useState } from 'react';
 import type { FormEvent } from 'react';
-import { waLink } from '@/lib/site';
+import { site, waLink } from '@/lib/site';
+import { submitPartner } from '@/lib/submit-partner';
 import { helpsPlanOptions, heardAboutOptions } from '@/lib/franchise';
 
 /**
- * Digital Franchise enquiry. Deliberately does NOT post to the CRM lead intake:
- * that endpoint creates travel Leads and requires a destination, nights and a
- * travel date, so a partnership enquiry would land in the sales pipeline as a
- * malformed trip. It hands off to WhatsApp, which is what the brochure promises.
+ * Digital Franchise enquiry. Posts to the CRM's partner intake, which is a
+ * separate endpoint from the trip-lead intake on purpose: a Lead requires a
+ * destination, nights and a travel date, so a partnership enquiry filed as one
+ * would land in the sales pipeline as a malformed trip.
+ *
+ * WhatsApp opens as well, but it is not the record. Someone whose popup was
+ * blocked, or who never presses send in WhatsApp, is still captured by the CRM
+ * post, and the confirmation below only promises a callback when something
+ * actually reached us.
  */
 export function FranchiseForm() {
   const [name, setName] = useState('');
@@ -21,7 +27,11 @@ export function FranchiseForm() {
   const [heard, setHeard] = useState(heardAboutOptions[0]);
   const [message, setMessage] = useState('');
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [pending, setPending] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  // What actually reached IRL, which decides what we are entitled to promise.
+  const [saved, setSaved] = useState(false);
+  const [waOpened, setWaOpened] = useState(false);
 
   function validate(): Record<string, string> {
     const found: Record<string, string> = {};
@@ -35,8 +45,9 @@ export function FranchiseForm() {
     return found;
   }
 
-  function onSubmit(e: FormEvent<HTMLFormElement>) {
+  async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (pending) return;
     const found = validate();
     setErrors(found);
     if (Object.keys(found).length > 0) return;
@@ -53,16 +64,55 @@ export function FranchiseForm() {
       message.trim() ? `My question: ${message}` : '',
     ].filter(Boolean);
 
-    window.open(waLink(lines.join(' ')), '_blank');
+    // Opened before awaiting anything: a popup blocked because the click's user
+    // gesture expired mid-request would cost us the conversation.
+    const opened = window.open(waLink(lines.join(' ')), '_blank');
+    setWaOpened(!!opened);
+
+    setPending(true);
+    const result = await submitPartner({
+      name,
+      phone,
+      email,
+      city,
+      occupation: work,
+      helpsPlanHolidays: helpsPlan,
+      heardAboutUs: heard,
+      message,
+    });
+    setPending(false);
+
+    if (!result.ok && result.fieldErrors && Object.keys(result.fieldErrors).length > 0) {
+      setErrors(result.fieldErrors);
+      return;
+    }
+
+    setSaved(result.ok);
     setSubmitted(true);
   }
 
   if (submitted) {
+    // Three outcomes, said honestly. Only the first is a promise we can keep on
+    // our own; the last means nothing reached us and the visitor has to act.
     return (
-      <p role="status" style={{ fontSize: '1.05rem' }}>
-        Got it. An IRL representative will contact you to walk you through the model, the support you get and how to
-        start. If your WhatsApp did not open, call us on 93246 01955.
-      </p>
+      <div role="status" style={{ fontSize: '1.05rem' }}>
+        {saved ? (
+          <p>
+            Got it. An IRL representative will contact you to walk you through the model, the support you get and how
+            to start.
+          </p>
+        ) : waOpened ? (
+          <p>
+            Your details are ready in WhatsApp. Press send there and an IRL representative will contact you to walk you
+            through the model, the support you get and how to start.
+          </p>
+        ) : (
+          <p>
+            We could not save your details, and WhatsApp did not open. Please call or WhatsApp us on{' '}
+            <a href={site.phoneLink}>{site.phoneDisplay}</a> and we will take it from there.
+          </p>
+        )}
+      </div>
     );
   }
 
@@ -154,8 +204,13 @@ export function FranchiseForm() {
         <textarea id="fr-message" rows={4} maxLength={1000} value={message} onChange={(e) => setMessage(e.target.value)} />
       </div>
 
-      <button type="submit" className="btn btn-wa" style={{ width: '100%', justifyContent: 'center' }}>
-        I am interested. Tell me more.
+      <button
+        type="submit"
+        className="btn btn-wa"
+        style={{ width: '100%', justifyContent: 'center' }}
+        disabled={pending}
+      >
+        {pending ? 'Sending...' : 'I am interested. Tell me more.'}
       </button>
 
       <p className="hint" style={{ marginTop: '0.9rem' }}>
