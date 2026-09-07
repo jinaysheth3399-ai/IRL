@@ -14,6 +14,7 @@ const navItems = [
   { href: '/how-it-works/', label: 'How It Works', code: 'PLN' },
   { href: '/reviews/', label: 'Reviews', code: 'REV' },
   { href: '/about/', label: 'About Us', code: 'IRL' },
+  { href: '/digital-franchise/', label: 'Digital Franchise', code: 'DFP' },
   { href: '/contact/', label: 'Contact', code: 'TEL' },
 ];
 

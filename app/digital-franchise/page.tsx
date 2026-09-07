@@ -62,24 +62,41 @@ export default function FranchisePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(franchiseJsonLd).replace(/</g, BACKSLASH + 'u003c') }}
       />
 
-      {/* Opening: the promise */}
-      <section className="section" style={{ paddingTop: 'clamp(2.5rem, 6vw, 4.5rem)' }}>
-        <div className="container">
-          <h1 style={{ maxWidth: '16ch' }}>
-            Turn your network into a <span className="lime">travel business.</span>
-          </h1>
-          <p className="hero-sub" style={{ maxWidth: '54ch' }}>
-            Travel is one of the most recommendation driven businesses in the world. You may already be recommending
-            destinations, hotels and experiences. Become an IRL Digital Franchise Partner and build a business around
-            it.
-          </p>
-          <div className="hero-actions">
-            <Link className="btn btn-primary" href="#franchise-form">
-              Contact Us To Know More
-            </Link>
-            <Link className="btn btn-ghost" href="#how-it-works">
-              See How It Works
-            </Link>
+      {/* Opening: the pitch and the form together, so nobody has to scroll to
+          the bottom of a long page to act on it. */}
+      <section className="section" id="franchise-form" style={{ paddingTop: 'clamp(2.5rem, 6vw, 4.5rem)' }}>
+        <div className="container franchise-hero">
+          <div>
+            <h1>
+              Turn your network into a <span className="lime">travel business.</span>
+            </h1>
+            <p className="hero-sub">
+              Travel is one of the most recommendation driven businesses in the world. You may already be recommending
+              destinations, hotels and experiences. Become an IRL Digital Franchise Partner and build a business around
+              it.
+            </p>
+            <ul className="list-plain hero-proof">
+              {notNeeded.map((line) => (
+                <li key={line}>
+                  <IconCheck color="var(--marigold)" />
+                  <span>{line}</span>
+                </li>
+              ))}
+            </ul>
+            <div className="hero-actions">
+              <Link className="btn btn-ghost" href="#how-it-works">
+                See How It Works
+              </Link>
+            </div>
+          </div>
+          <div className="note franchise-form-card">
+            <i className="tape" aria-hidden="true" />
+            <h2>Contact us to know more.</h2>
+            <p style={{ margin: '0.6rem 0 1.4rem' }}>
+              Fill in your details and our team will connect with you to explain the model, the support and the
+              commercials.
+            </p>
+            <FranchiseForm />
           </div>
         </div>
       </section>
@@ -117,14 +134,6 @@ export default function FranchisePage() {
                 team supports you through the entire journey. You stay the first point of contact for your customer,
                 while IRL works with you behind the scenes.
               </p>
-              <ul className="list-plain" style={{ marginTop: '1.5rem' }}>
-                {notNeeded.map((line) => (
-                  <li key={line} style={{ paddingBlock: '0.45rem' }}>
-                    <IconCheck color="var(--marigold)" />
-                    <span>{line}</span>
-                  </li>
-                ))}
-              </ul>
             </div>
             <div className="note franchise-kit" style={{ transform: 'rotate(-0.6deg)' }}>
               <i className="tape" aria-hidden="true" />
@@ -237,21 +246,6 @@ export default function FranchisePage() {
             <p>Every office has someone people call for hotel recommendations.</p>
             <p>Every WhatsApp group has that one person who knows where to go, where to stay and what to do.</p>
             <p className="close-punch">If that person is you, IRL gives you the support system to take the next step.</p>
-          </div>
-        </div>
-      </section>
-
-      {/* The form */}
-      <section className="section" id="franchise-form">
-        <div className="container">
-          <div className="note" style={{ maxWidth: '40rem', marginInline: 'auto', padding: '2rem 1.75rem 1.75rem' }}>
-            <i className="tape" aria-hidden="true" />
-            <h2 style={{ fontSize: '1.5rem' }}>Contact us to know more.</h2>
-            <p style={{ margin: '0.6rem 0 1.4rem' }}>
-              Fill in your details and our team will connect with you to explain the model, the support and the
-              commercials.
-            </p>
-            <FranchiseForm />
           </div>
         </div>
       </section>

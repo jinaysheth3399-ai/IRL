@@ -1322,6 +1322,18 @@ details.fold[open] summary .chev {
   border-radius: 8px;
   padding: 0.7rem 0.8rem;
   min-height: 48px;
+  /* A bare input carries a 20 character intrinsic width, roughly 228px here,
+     which no ancestor can shrink past. Two of them side by side floor a form
+     card at about 528px and push a narrow phone into sideways scrolling. */
+  width: 100%;
+  min-width: 0;
+}
+
+/* Two short fields on one line where there is room, stacked where there is not. */
+.field-pair {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  gap: 0.9rem;
 }
 
 .field select {
@@ -1791,6 +1803,76 @@ details.fold[open] summary .chev {
 
 .hesitation-list li:first-child {
   border-top: none;
+}
+
+/* Hero: the pitch and the enquiry form side by side, so the action is visible
+   without scrolling a long page. The form column is fixed-ish so it stays a
+   readable form width while the pitch takes the slack. */
+.franchise-hero {
+  display: grid;
+  grid-template-columns: 1fr minmax(360px, 34rem);
+  align-items: start;
+  gap: 3rem;
+}
+
+/* Grid children refuse to shrink below their content's min-content width unless
+   told to, which is how one wide form field can widen the whole page. */
+.franchise-hero > * {
+  min-width: 0;
+}
+
+/* On the two-up layout the h1 must not run the full container width. */
+.franchise-hero h1 {
+  font-size: clamp(2.4rem, 4.6vw, 3.6rem);
+  max-width: 14ch;
+}
+
+/* .hero .hero-sub is scoped to the homepage hero section, which this page does
+   not use, so the type is restated here rather than inherited by accident. */
+.franchise-hero .hero-sub {
+  margin-top: 1.2rem;
+  max-width: 46ch;
+  font-size: clamp(1.05rem, 1.6vw, 1.3rem);
+  color: var(--paper);
+}
+
+.hero-proof {
+  margin-top: 1.6rem;
+}
+
+.hero-proof li {
+  padding-block: 0.45rem;
+}
+
+/* .hero .hero-actions is homepage scoped too, so the row is restated here. */
+.franchise-hero .hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  margin-top: 1.9rem;
+}
+
+.franchise-form-card {
+  padding: 2rem 1.75rem 1.75rem;
+}
+
+.franchise-form-card h2 {
+  color: var(--ink);
+  font-size: clamp(1.5rem, 2.4vw, 1.8rem);
+}
+
+/* Below the two-up threshold the form drops under the pitch and the headline
+   returns to its full size. */
+@media (max-width: 980px) {
+  .franchise-hero {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .franchise-hero h1 {
+    font-size: clamp(2.7rem, 7vw, 5.4rem);
+    max-width: 16ch;
+  }
 }
 
 /* Sets whose count does not divide evenly by the column count: five steps and

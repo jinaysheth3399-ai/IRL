@@ -269,7 +269,7 @@ export function EnquiryForm({ source }: { source: 'plan-my-trip' | 'contact' }) 
         </div>
       ) : null}
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.9rem' }}>
+      <div className="field-pair">
         <div className="field">
           <label htmlFor={id('nights')}>Nights</label>
           <input

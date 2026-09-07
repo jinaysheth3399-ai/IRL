@@ -113,7 +113,7 @@ export function FranchiseForm() {
         {errors.email ? <span className="field-error">{errors.email}</span> : null}
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.9rem' }}>
+      <div className="field-pair">
         <div className="field">
           <label htmlFor="fr-city">City</label>
           <input
