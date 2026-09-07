@@ -1766,6 +1766,12 @@ details.fold[open] summary .chev {
   padding: 2.2rem 1.6rem 2rem;
 }
 
+/* The pace line and the kit card close out "Who is this for?", set off from
+   the stubs above them. */
+.suitable-close {
+  margin-top: clamp(2.25rem, 5vw, 3.5rem);
+}
+
 .kit-line {
   font-family: var(--font-display), sans-serif;
   font-weight: 900;

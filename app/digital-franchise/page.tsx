@@ -8,7 +8,6 @@ import {
   notNeeded,
   howItWorks,
   hesitations,
-  benefits,
   suitableFor,
   franchiseFaqs,
 } from '@/lib/franchise';
@@ -120,38 +119,13 @@ export default function FranchisePage() {
         </div>
       </section>
 
-      {/* Your network, our expertise */}
-      <section className="section">
-        <div className="container">
-          <SectionHead
-            title="Your network. Our expertise."
-            lead="You bring the customer. IRL manages everything that comes after."
-          />
-          <div className="grid-2" style={{ alignItems: 'start', gap: '2.5rem' }}>
-            <div>
-              <p style={{ fontSize: '1.15rem' }}>
-                From itinerary creation and hotel bookings to activities, transfers and on ground execution, our travel
-                team supports you through the entire journey. You stay the first point of contact for your customer,
-                while IRL works with you behind the scenes.
-              </p>
-            </div>
-            <div className="note franchise-kit" style={{ transform: 'rotate(-0.6deg)' }}>
-              <i className="tape" aria-hidden="true" />
-              <span className="stamp">All you need</span>
-              <p className="kit-line">Your phone</p>
-              <p className="kit-plus" aria-hidden="true">
-                +
-              </p>
-              <p className="kit-line">Your network</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* How it works: five steps */}
       <section className="section" id="how-it-works">
         <div className="container">
-          <SectionHead title="How the IRL Digital Franchise works" />
+          <SectionHead
+            title="How the IRL Digital Franchise works"
+            lead="You bring the customer. IRL manages everything that comes after."
+          />
           <div className="flow-grid">
             {howItWorks.map((step, i) => (
               <div
@@ -198,26 +172,6 @@ export default function FranchisePage() {
         </div>
       </section>
 
-      {/* Why join */}
-      <section className="section">
-        <div className="container">
-          <SectionHead title="Why become an IRL Digital Franchise Partner?" />
-          <div className="flow-grid">
-            {benefits.map((b, i) => (
-              <div
-                key={b.title}
-                className="note"
-                style={{ transform: `rotate(${[-0.6, 0.7, -0.4, 0.5, -0.7, 0.4, -0.5][i]}deg)` }}
-              >
-                <i className="tape" aria-hidden="true" />
-                <h3>{b.title}</h3>
-                <p style={{ marginTop: '0.5rem' }}>{b.text}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Who it is for */}
       <section className="section">
         <div className="container">
@@ -232,6 +186,21 @@ export default function FranchisePage() {
                 {s}
               </p>
             ))}
+          </div>
+          <div className="grid-2 suitable-close" style={{ alignItems: 'center', gap: '2.5rem' }}>
+            <p style={{ fontSize: '1.15rem' }}>
+              Build it as your main profession, as a second business, or alongside the work you already do. You set the
+              pace, and you start with the people who already know you.
+            </p>
+            <div className="note franchise-kit" style={{ transform: 'rotate(-0.6deg)' }}>
+              <i className="tape" aria-hidden="true" />
+              <span className="stamp">All you need</span>
+              <p className="kit-line">Your phone</p>
+              <p className="kit-plus" aria-hidden="true">
+                +
+              </p>
+              <p className="kit-line">Your network</p>
+            </div>
           </div>
         </div>
       </section>

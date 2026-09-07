@@ -50,36 +50,9 @@ export const hesitations = [
   'How to manage changes and customer requests',
 ];
 
-export const benefits = [
-  {
-    title: 'Work from anywhere',
-    text: 'No physical travel office to set up. Operate from home, from your existing business, or while travelling.',
-  },
-  {
-    title: '7 day destination training',
-    text: 'Understand destinations and products properly before you start recommending them.',
-  },
-  {
-    title: 'A dedicated relationship manager',
-    text: 'One point of support inside IRL, whenever you or your customer needs it.',
-  },
-  {
-    title: 'Complete backend support',
-    text: 'We assist with quotations, itineraries, bookings, hotels, transfers, sightseeing and package execution.',
-  },
-  {
-    title: 'Your customer stays your customer',
-    text: 'You remain the first point of contact for anyone you introduce. IRL supports the transaction behind the scenes.',
-  },
-  {
-    title: 'Build through your existing network',
-    text: 'You do not need thousands of customers to begin. Start with the people who already know and trust you.',
-  },
-  {
-    title: 'Grow at your own pace',
-    text: 'Build it as your main profession, as a second business, or alongside the work you already do.',
-  },
-];
+// The PDF's "Why become a partner" list is not reproduced here. Six of its seven
+// points restated a step in howItWorks or a line in notNeeded, and the seventh,
+// growing at your own pace, is said once on the page under "Who is this for?".
 
 export const suitableFor = [
   'Entrepreneurs looking for an additional business',
