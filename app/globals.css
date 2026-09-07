@@ -1793,11 +1793,40 @@ details.fold[open] summary .chev {
   border-top: none;
 }
 
-/* Who it is for: stubs that wrap, no fixed column count. */
+/* Sets whose count does not divide evenly by the column count: five steps and
+   seven benefits both leave a short last row, and in a fixed grid that reads as
+   a card fell off rather than as a deliberate end. Wrapping and centring makes
+   the last row look placed. */
+.flow-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.75rem;
+}
+
+.flow-grid > * {
+  flex: 1 1 300px;
+  max-width: 360px;
+}
+
+/* Who it is for: stubs that wrap, centred for the same reason. */
 .suitable-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 1rem;
+}
+
+.suitable-grid > * {
+  flex: 1 1 250px;
+  max-width: 340px;
+}
+
+@media (max-width: 640px) {
+  .flow-grid > *,
+  .suitable-grid > * {
+    max-width: none;
+  }
 }
 
 /* The close. One note, centred, with the punch line carrying the weight. */

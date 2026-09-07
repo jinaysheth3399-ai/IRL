@@ -1,0 +1,15 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    {
+      "source": "/franchise",
+      "destination": "/digital-franchise",
+      "permanent": true
+    },
+    {
+      "source": "/franchise/",
+      "destination": "/digital-franchise/",
+      "permanent": true
+    }
+  ]
+}

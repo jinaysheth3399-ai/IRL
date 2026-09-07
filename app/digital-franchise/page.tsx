@@ -48,7 +48,7 @@ const franchiseJsonLd = {
       '@type': 'BreadcrumbList',
       itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'Home', item: `${siteUrl}/` },
-        { '@type': 'ListItem', position: 2, name: 'Digital Franchise Partner', item: `${siteUrl}/franchise/` },
+        { '@type': 'ListItem', position: 2, name: 'Digital Franchise Partner', item: `${siteUrl}/digital-franchise/` },
       ],
     },
   ],
@@ -143,7 +143,7 @@ export default function FranchisePage() {
       <section className="section" id="how-it-works">
         <div className="container">
           <SectionHead title="How the IRL Digital Franchise works" />
-          <div className="grid-3">
+          <div className="flow-grid">
             {howItWorks.map((step, i) => (
               <div
                 key={step.title}
@@ -193,7 +193,7 @@ export default function FranchisePage() {
       <section className="section">
         <div className="container">
           <SectionHead title="Why become an IRL Digital Franchise Partner?" />
-          <div className="grid-3">
+          <div className="flow-grid">
             {benefits.map((b, i) => (
               <div
                 key={b.title}

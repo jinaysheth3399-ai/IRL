@@ -20,7 +20,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     page('/world-trips/', 0.9),
     ...destinations.map((d) => page(`/trips/${d.slug}/`, 0.8)),
     page('/plan-my-trip/', 0.7),
-    page('/franchise/', 0.7),
+    page('/digital-franchise/', 0.7),
     page('/how-it-works/', 0.6),
     page('/why-us/', 0.5),
     page('/reviews/', 0.5),
