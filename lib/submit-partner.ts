@@ -25,14 +25,22 @@ export type PartnerResult =
   | { ok: true; deduped: boolean; code?: string }
   | { ok: false; fieldErrors?: Record<string, string>; message?: string };
 
-const ENDPOINT = process.env.NEXT_PUBLIC_CRM_PARTNER_URL;
+// Defaulted in code rather than required from the environment. A NEXT_PUBLIC
+// value is inlined at build time, so a variable that is missing, scoped to the
+// wrong environment or saved after a build starts takes this form offline with
+// no signal, which is what happened on the first deploy. The URL is public
+// either way, since it ships in this bundle; the CRM does the gatekeeping with
+// the shared secret, an origin check and rate limiting. The env var still wins
+// when set, so a move or a staging endpoint needs no code change.
+const DEFAULT_ENDPOINT = 'https://irlerp.vercel.app/api/intake/partner';
+const ENDPOINT = process.env.NEXT_PUBLIC_CRM_PARTNER_URL || DEFAULT_ENDPOINT;
 const SECRET = process.env.NEXT_PUBLIC_INTAKE_SECRET;
 
 export async function submitPartner(v: PartnerValues): Promise<PartnerResult> {
-  // Not configured yet. Reported as a failure rather than a success, unlike the
-  // trip form: there is no CRM record either way, and the visitor's confirmation
-  // wording depends on knowing whether we actually captured anything.
-  if (!ENDPOINT || !SECRET) {
+  // Only the secret can be missing now. Reported as a failure rather than a
+  // success, unlike the trip form: there is no CRM record either way, and the
+  // confirmation wording depends on knowing whether we captured anything.
+  if (!SECRET) {
     return { ok: false, message: 'We could not save your details automatically.' };
   }
 
