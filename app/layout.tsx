@@ -52,13 +52,13 @@ export const metadata: Metadata = {
 // Real facts only: address, hours, logo, phone and email are owner-confirmed.
 // sameAs carries the Google Business Profile and nothing else: the social links
 // in lib/site.ts are still placeholders, and a fabricated profile is worse than
-// a sparse one. The name matches the profile so Google can tie the two together;
-// the forms people actually say stay as aliases.
+// a sparse one. The full name matches the profile so Google can tie the two
+// together; the short form IRL is the one alias.
 const agencyJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'TravelAgency',
-  name: site.businessName,
-  alternateName: [site.name, site.fullName],
+  name: site.fullName,
+  alternateName: site.name,
   url: siteUrl,
   image: `${siteUrl}/brand/irl-lockup.png`,
   slogan: site.tagline,

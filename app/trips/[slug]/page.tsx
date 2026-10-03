@@ -76,7 +76,7 @@ export default async function TripPage({ params }: { params: Promise<{ slug: str
           : `${d.heroLine} Exact price on WhatsApp.`,
         image: `${siteUrl}${d.photo}`,
         url: pageUrl,
-        brand: { '@type': 'Brand', name: site.businessName },
+        brand: { '@type': 'Brand', name: site.fullName },
         ...(d.priceFrom
           ? {
               offers: {

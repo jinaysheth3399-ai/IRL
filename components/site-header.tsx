@@ -53,7 +53,7 @@ export function Header() {
       <div className="container">
         <div className="bar">
           <Link className="brand" href="/">
-            <img className="brand-mark" src="/brand/irl-mark.png" alt="IRL - In Real Life" width={457} height={203} />
+            <img className="brand-mark" src="/brand/irl-mark.png" alt={`${site.fullName} (${site.name})`} width={457} height={203} />
             <span className="tag-line">We plan. You travel.</span>
           </Link>
 

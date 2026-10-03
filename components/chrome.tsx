@@ -18,7 +18,7 @@ export function Footer() {
       <div className="container">
         <div className="footer-grid">
           <div>
-            <img className="brand-mark brand-mark-footer" src="/brand/irl-mark.png" alt="IRL - In Real Life" width={457} height={203} style={{ marginBottom: '0.6rem' }} />
+            <img className="brand-mark brand-mark-footer" src="/brand/irl-mark.png" alt={`${site.fullName} (${site.name})`} width={457} height={203} style={{ marginBottom: '0.6rem' }} />
             <p className="hand" style={{ color: 'var(--cream-soft)', fontSize: '1.1rem' }}>
               We plan. You travel.
             </p>

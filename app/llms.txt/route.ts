@@ -34,9 +34,9 @@ export function GET() {
   const world = destinations.filter((d) => d.region === 'world');
 
   const text = [
-    `# ${site.businessName} (${site.name})`,
+    `# ${site.fullName} (${site.name})`,
     '',
-    `> ${site.businessName} (${site.name}) is a travel agency at Trade Center, Station Road, Kolhapur, Maharashtra, India. It plans holiday packages across India and abroad, and custom trips, for families from Kolhapur and nearby towns. One person plans each trip and stays the contact during it.`,
+    `> ${site.fullName} (${site.name}) is a travel agency at Trade Center, Station Road, Kolhapur, Maharashtra, India. It plans holiday packages across India and abroad, and custom trips, for families from Kolhapur and nearby towns. One person plans each trip and stays the contact during it.`,
     '',
     `- Office: ${site.address}. Open ${site.timings}. Walk-ins welcome, no appointment needed.`,
     `- Phone and WhatsApp: +91 ${site.phoneDisplay}. Email: ${site.email}.`,

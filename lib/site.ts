@@ -4,11 +4,11 @@
 export const siteUrl = 'https://inrealife.in';
 
 export const site = {
+  // Owner-confirmed 2026-10-03: the business is "In Real Life" and "IRL" is its
+  // short form. No other name: not "IRL - In Real Life", not "In Real Life
+  // Holidays". The full name matches the Google Business Profile exactly.
   name: 'IRL',
-  fullName: 'IRL - In Real Life',
-  // Exactly as registered on the Google Business Profile, so the structured
-  // data and the listing name the same business.
-  businessName: 'In Real Life',
+  fullName: 'In Real Life',
   tagline: 'We plan. You travel.',
   subline: 'Holiday packages from Kolhapur to all of India and the world. Tell us your budget. We build your trip.',
   city: 'Kolhapur',
