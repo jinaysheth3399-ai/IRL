@@ -50,10 +50,10 @@ export const metadata: Metadata = {
 };
 
 // Real facts only: address, hours, logo, phone and email are owner-confirmed.
-// sameAs carries the Google Business Profile and nothing else: the social links
-// in lib/site.ts are still placeholders, and a fabricated profile is worse than
-// a sparse one. The full name matches the profile so Google can tie the two
-// together; the short form IRL is the one alias.
+// sameAs lists the real profiles only: the Google Business Profile and
+// Instagram, the one social account IRL has. A fabricated profile is worse than
+// a short list. The full name matches the Google profile so Google can tie the
+// two together; the short form IRL is the one alias.
 const agencyJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'TravelAgency',
@@ -74,7 +74,7 @@ const agencyJsonLd = {
   },
   geo: { '@type': 'GeoCoordinates', latitude: site.google.lat, longitude: site.google.lng },
   hasMap: site.google.profile,
-  sameAs: [site.google.profile],
+  sameAs: [site.google.profile, site.instagram],
   openingHoursSpecification: {
     '@type': 'OpeningHoursSpecification',
     dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],

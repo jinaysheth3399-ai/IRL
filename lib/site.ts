@@ -1,4 +1,4 @@
-// One place for every contact detail. Replace the PLACEHOLDER values before launch.
+// One place for every contact detail. Every value here is owner-confirmed.
 
 /** Canonical origin. Vercel previews and www both resolve here. */
 export const siteUrl = 'https://inrealife.in';
@@ -25,10 +25,10 @@ export const site = {
   timings: 'Monday to Sunday, 10 am to 7 pm',
   landmarkLine: 'We are in Trade Center on Station Road, 2nd floor. Walk-ins welcome, no appointment needed.',
 
-  // PLACEHOLDER: social links.
-  instagram: 'https://instagram.com/',
-  facebook: 'https://facebook.com/',
-  youtube: 'https://youtube.com/',
+  // Owner-confirmed 2026-10-03: Instagram is the only social profile. There is
+  // no Facebook, YouTube or LinkedIn, so none is linked anywhere.
+  instagram: 'https://www.instagram.com/irl_inrealife/',
+  instagramHandle: '@irl_inrealife',
 
   // Google Business Profile, set up by the owner 2026-10-03. Every map link
   // points at the listing itself rather than an address search, which on

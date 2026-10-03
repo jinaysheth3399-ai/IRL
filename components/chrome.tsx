@@ -66,15 +66,7 @@ export function Footer() {
             <h3 style={{ marginTop: '1.2rem' }}>Follow us</h3>
             <p>
               <a href={site.instagram} target="_blank" rel="noopener noreferrer">
-                Instagram
-              </a>
-              {' · '}
-              <a href={site.facebook} target="_blank" rel="noopener noreferrer">
-                Facebook
-              </a>
-              {' · '}
-              <a href={site.youtube} target="_blank" rel="noopener noreferrer">
-                YouTube
+                {site.instagramHandle} on Instagram
               </a>
             </p>
           </div>
