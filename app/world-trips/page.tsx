@@ -49,7 +49,7 @@ export default function WorldTripsPage() {
           <div className="note" style={{ maxWidth: '44rem', marginInline: 'auto', textAlign: 'center', padding: '2.5rem 2rem' }}>
             <i className="tape" aria-hidden="true" />
             <h2>Not sure which trip fits?</h2>
-            <p style={{ margin: '0.75rem auto 1.5rem' }}>Message us. We suggest the right trip for your group and budget.</p>
+            <p style={{ margin: '0.75rem auto 1.5rem' }}>Message us. We suggest the right trip for your group.</p>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.9rem', justifyContent: 'center' }}>
               <PlanTripButton />
               <Link className="btn btn-ghost" href="/india-trips/" style={{ color: 'var(--ink)' }}>

@@ -19,7 +19,7 @@ export const trustStrip = [
 export const howItWorksShort = [
   {
     title: 'Tell us your dream trip.',
-    text: 'Message us on WhatsApp or fill one small form. Where, when, how many people, and your budget.',
+    text: 'Message us on WhatsApp or fill one small form. Where, when and how many people.',
   },
   {
     title: 'Get your plan in 24 hours.',
@@ -34,7 +34,7 @@ export const howItWorksShort = [
 export const howItWorksFull = [
   {
     title: 'You tell us.',
-    text: 'Message us on WhatsApp, call, fill the form, or walk into our Kolhapur office. Tell us where, when, how many people, and your budget. Not sure where to go? Tell us your budget and we will suggest.',
+    text: 'Message us on WhatsApp, call, fill the form, or walk into our Kolhapur office. Tell us where, when and how many people. Not sure where to go? Tell us who is travelling and what kind of holiday you like, and we will suggest.',
   },
   {
     title: 'We build your plan.',

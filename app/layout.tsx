@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     template: '%s | IRL',
   },
   description:
-    "Kolhapur's own travel company. Kashmir, Kerala, Dubai, Bali and more. Tell us your budget, we plan your trip. WhatsApp us today.",
+    "Kolhapur's own travel company. Kashmir, Kerala, Dubai, Bali and more. Tell us where and when, and we plan your trip. WhatsApp us today.",
   // './' resolves per page, so every route canonicalises to its own apex URL
   // (www 308s here; Vercel previews would otherwise index as duplicates).
   alternates: { canonical: './' },

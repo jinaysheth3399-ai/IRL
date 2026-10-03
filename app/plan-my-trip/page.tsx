@@ -6,7 +6,7 @@ import { PlanForm } from '@/components/plan-form';
 export const metadata: Metadata = {
   title: 'Plan My Trip | Tell us your dream trip',
   description:
-    'Tell IRL where you want to go, when, how many people, and your budget. A real person from Kolhapur replies on WhatsApp within 24 hours.',
+    'Tell IRL where you want to go, when and how many people. A real person from Kolhapur replies on WhatsApp within 24 hours.',
 };
 
 export default function PlanMyTripPage() {

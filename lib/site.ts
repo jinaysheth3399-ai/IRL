@@ -10,7 +10,7 @@ export const site = {
   name: 'IRL',
   fullName: 'In Real Life',
   tagline: 'We plan. You travel.',
-  subline: 'Holiday packages from Kolhapur to all of India and the world. Tell us your budget. We build your trip.',
+  subline: 'Holiday packages from Kolhapur to all of India and the world. Tell us where, when and who is coming. We build your trip.',
   city: 'Kolhapur',
 
   // Real number, owner-confirmed 2026-08-15.
