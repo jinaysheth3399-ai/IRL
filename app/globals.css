@@ -997,6 +997,16 @@ a.print-link:hover .caption {
   max-width: 380px;
 }
 
+/* The bio runs far longer than the photo is tall, so on the two-column layout
+   the photo stays in view while the reader scrolls, instead of leaving an empty
+   column beside the text. Clears the sticky header. */
+@media (min-width: 641px) {
+  .founder-print {
+    position: sticky;
+    top: 6rem;
+  }
+}
+
 .founder-name {
   font-family: var(--font-display), sans-serif;
   font-weight: 900;

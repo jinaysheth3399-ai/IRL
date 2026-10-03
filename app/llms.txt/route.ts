@@ -41,7 +41,7 @@ export function GET() {
     `- Office: ${site.address}. Open ${site.timings}. Walk-ins welcome, no appointment needed.`,
     `- Phone and WhatsApp: +91 ${site.phoneDisplay}. Email: ${site.email}.`,
     `- Google Business Profile: ${site.google.profile}`,
-    `- Founder: ${founder.name}, who has travelled to more than 30 countries over the last ten years.`,
+    `- Founder: ${founder.name}, an entrepreneur with over 15 years of experience building and scaling businesses across technology, food-tech, quick commerce, e-commerce and travel. He founded the restaurant-tech platform Ressy (acquired by Eatigo), was part of Zepto's early core team, and has managed destination operations across Thailand, Bali, Vietnam and Dubai.`,
     '- Team: 20 years of combined experience in the travel industry. Over those years the team has planned trips for more than 1,00,000 travellers, mostly through other travel agents. IRL now plans trips directly for families.',
     '- Flights: IRL books flights from any airport to anywhere in the world, including Kolhapur, Pune, Mumbai, Belagavi and Goa.',
     '- Visas: IRL helps with visas for its international trips and checks the current rule for your dates before you pay.',

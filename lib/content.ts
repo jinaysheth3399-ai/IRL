@@ -212,15 +212,26 @@ export const aboutEnglish = [
 
 // Owner-supplied facts (2026-08-10). The 1,00,000+ figure is the team's record across
 // their years in the trade, not IRL's own count, and the copy says so plainly.
+// Owner-supplied bio (2026-10-03), replacing the 2026-08-10 travel-count
+// version. Edited only for the house rules: no em or en dashes, the business
+// named as on the Google profile ("IRL (In Real Life)" rather than "In Real
+// Life Holidays"), and plain paragraphs in place of WhatsApp bold markers.
+// Time-sensitive: Zepto had SEBI clearance but had not listed as of 2026-10-03;
+// reword the Zepto paragraph once it does.
 export const founder = {
   name: 'Koustubh Rajepandhare',
   role: 'Founder, IRL',
   photo: '/photos/founder.jpg',
-  lead: 'Thirty countries in ten years, and still counting.',
+  // Non-breaking spaces keep each role whole and each dot on the line it
+  // follows, so a wrap never starts a line with a stray separator.
+  lead: 'Entrepreneur · Startup Operator · Travel & Experiences Leader',
   story: [
-    'Koustubh has spent the last ten years on the road. More than 30 countries so far, most of them planned the same way he now plans yours: by hand, one detail at a time.',
-    'He is not doing this alone. The team behind IRL has 20 years of combined experience in the travel industry, and between them they have planned and managed trips for more than 1,00,000 travellers.',
-    'For most of those years the work happened quietly in the background. The team built trips for travel agents, who then sold them onward. The families taking the holiday never met the people who designed it. IRL exists to close that gap. Now you talk to the people who actually build your trip, and nobody sits in between.',
-    'Kolhapur is where he started out. So it is where IRL starts too.',
+    'Koustubh Rajepandhare is an entrepreneur and business leader with over 15 years of experience building and scaling businesses across technology, food-tech, quick commerce, e-commerce and travel.',
+    "He founded Ressy, a restaurant-tech platform that worked with thousands of restaurants and built technology connecting restaurants, consumers and payment ecosystems. Ressy was subsequently acquired by Eatigo, the TripAdvisor-backed restaurant reservation platform, following which Koustubh took over as Eatigo's Country Lead for India, leading its expansion and operations in the country.",
+    "Koustubh was later part of the core team at Zepto during its earliest days, helping build and scale one of India's first large-scale 10-minute quick-commerce operations. As part of the leadership team, he contributed to the rapid rollout of the business across cities, stores, operations and teams during the formative phase of what went on to become one of India's most recognised quick-commerce companies and is now progressing towards the public markets.",
+    'His operating experience also includes leadership roles across high-growth businesses such as Groupon and Ninjacart, giving him extensive experience in scaling consumer businesses, operations and marketplaces.',
+    "In the travel industry, Koustubh has managed and scaled Eagle Crest DMC's destination operations across Thailand, Bali, Vietnam and Dubai, gaining deep on-ground experience in contracting, destination management, holiday operations and customer experience across some of Asia's most popular outbound travel markets.",
+    'At IRL (In Real Life), Koustubh brings together this combination of technology-led thinking, large-scale operations and destination expertise to build a travel company focused on one simple objective: making holiday planning more transparent, personalised and dependable.',
+    'His philosophy for IRL is straightforward: use technology to simplify travel, but never take the human expertise out of it.',
   ],
 };
