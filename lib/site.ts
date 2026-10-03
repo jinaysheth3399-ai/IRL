@@ -6,6 +6,9 @@ export const siteUrl = 'https://inrealife.in';
 export const site = {
   name: 'IRL',
   fullName: 'IRL - In Real Life',
+  // Exactly as registered on the Google Business Profile, so the structured
+  // data and the listing name the same business.
+  businessName: 'In Real Life',
   tagline: 'We plan. You travel.',
   subline: 'Holiday packages from Kolhapur to all of India and the world. Tell us your budget. We build your trip.',
   city: 'Kolhapur',
@@ -27,8 +30,19 @@ export const site = {
   facebook: 'https://facebook.com/',
   youtube: 'https://youtube.com/',
 
-  // Drives the footer map link and the embedded map on Contact.
-  mapsQuery: 'Trade Center, Station Road, Kolhapur, Maharashtra 416001',
+  // Google Business Profile, set up by the owner 2026-10-03. Every map link
+  // points at the listing itself rather than an address search, which on
+  // Station Road lands on a cluster of other Trade Centre businesses. The cid
+  // and place id are the same listing (the place id decodes to the cid's
+  // feature id), and the pin is the one on the profile.
+  google: {
+    profile: 'https://maps.google.com/?cid=8335604660928947464',
+    embed: 'https://maps.google.com/maps?cid=8335604660928947464&output=embed',
+    reviews: 'https://search.google.com/local/reviews?placeid=ChIJzUMK3LcBwTsRCKXCckYErnM',
+    writeReview: 'https://search.google.com/local/writereview?placeid=ChIJzUMK3LcBwTsRCKXCckYErnM',
+    lat: 16.703809,
+    lng: 74.239323,
+  },
 
   bottomLine: 'IRL is a Kolhapur based travel company. Every trip is planned by a real person, not an app.',
 };

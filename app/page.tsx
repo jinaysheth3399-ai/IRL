@@ -3,7 +3,7 @@ import { PhotoPrint, SectionHead, TripCard, PlanTripButton, IconCheck } from '@/
 import { indiaTrips, worldTrips } from '@/lib/destinations';
 import { trustStrip, howItWorksShort, seasons, whyTrust, guestReviews } from '@/lib/content';
 import { site } from '@/lib/site';
-import { fare, PRICES_UPDATED } from '@/lib/price';
+import { fare, PRICES_VALID_UNTIL_LABEL } from '@/lib/price';
 import { SeasonNow } from '@/components/season-now';
 
 
@@ -70,7 +70,7 @@ export default function HomePage() {
               <TripCard key={d.slug} slug={d.slug} name={d.name} durationShort={d.durationShort} photo={d.photo} code={d.code} fare={fare(d.priceFrom)} />
             ))}
           </div>
-          <p className="fare-footnote">From prices are group rates. Prices updated {PRICES_UPDATED}.</p>
+          <p className="fare-footnote">From prices are group rates, valid till {PRICES_VALID_UNTIL_LABEL}.</p>
         </div>
       </section>
 

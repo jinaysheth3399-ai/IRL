@@ -50,12 +50,15 @@ export const metadata: Metadata = {
 };
 
 // Real facts only: address, hours, logo, phone and email are owner-confirmed.
-// The social links are still placeholders in lib/site.ts, so they stay out of
-// the schema until they are real; a fabricated NAP is worse than a sparse one.
+// sameAs carries the Google Business Profile and nothing else: the social links
+// in lib/site.ts are still placeholders, and a fabricated profile is worse than
+// a sparse one. The name matches the profile so Google can tie the two together;
+// the forms people actually say stay as aliases.
 const agencyJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'TravelAgency',
-  name: site.fullName,
+  name: site.businessName,
+  alternateName: [site.name, site.fullName],
   url: siteUrl,
   image: `${siteUrl}/brand/irl-lockup.png`,
   slogan: site.tagline,
@@ -69,6 +72,9 @@ const agencyJsonLd = {
     postalCode: '416001',
     addressCountry: 'IN',
   },
+  geo: { '@type': 'GeoCoordinates', latitude: site.google.lat, longitude: site.google.lng },
+  hasMap: site.google.profile,
+  sameAs: [site.google.profile],
   openingHoursSpecification: {
     '@type': 'OpeningHoursSpecification',
     dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
@@ -76,16 +82,6 @@ const agencyJsonLd = {
     closes: '19:00',
   },
 };
-
-const contract = `
-DIRECTION CONTRACT (impeccable)
-THESIS: The site is a night departure from Kolhapur: black sky, warm paper boarding passes, and one lime plane that carries the visitor from the office to sixteen destinations. It refuses the travel-portal arrangement and shows no prices anywhere.
-OWN-WORLD: Palette pinned by the IRL logo: near-black night, warm paper, chartreuse lime, olive-gray support, deep leaf green for green text on paper. Archivo Black display, Mukta body, Chivo Mono ticket data. Boarding-pass cards with punched edges, dashed lime flight paths, corner ticks. WhatsApp deep green appears only on WhatsApp actions; brand lime never does.
-STORY: A family lands in the dark cinematic hero, watches the lime plane draw its route, browses destinations as boarding passes, reads the plan in plain words, taps WhatsApp to get the price.
-FIRST VIEWPORT: Full-bleed night photo; huge "We plan. You travel." with lime accent; a dashed lime flight path draws itself and the plane rides it; two actions; punched boarding-stub proof strip beneath.
-FORM: Night Flight, user-pinned rebrand from the IRL logo; supersedes the album rendition of seed 72edd0cc.
-FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md
-`;
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -112,7 +108,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <noscript>
           <style>{`.site-loader{display:none!important}`}</style>
         </noscript>
-        <div hidden aria-hidden="true" dangerouslySetInnerHTML={{ __html: `<!--${contract}-->` }} />
         <SiteLoader />
         <AnnouncementBar />
         <Header />

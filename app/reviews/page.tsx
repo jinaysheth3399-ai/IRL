@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { SectionHead, WaButton } from '@/components/ui';
 import { guestReviews } from '@/lib/content';
-import { defaultWaMessage } from '@/lib/site';
+import { defaultWaMessage, site } from '@/lib/site';
 
 export const metadata: Metadata = {
   title: { absolute: 'Reviews | Real trips, real people' },
@@ -38,7 +38,22 @@ export default function ReviewsPage() {
               </figure>
             ))}
           </div>
-          {/* Owner: embed the Google Reviews widget here once the Google Business profile has reviews. */}
+          {/* Links rather than a widget: a reviews widget needs a third-party
+              script or a paid API, and this site is static. The Google listing
+              holds every review, not only the three we chose to show. */}
+          <div
+            style={{ marginTop: '2.5rem', display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '1rem 1.75rem' }}
+          >
+            <a className="btn btn-ghost" href={site.google.reviews} target="_blank" rel="noopener noreferrer">
+              Read all our reviews on Google
+            </a>
+            <p style={{ color: 'var(--cream-soft)' }}>
+              Travelled with us?{' '}
+              <a href={site.google.writeReview} target="_blank" rel="noopener noreferrer">
+                Leave a review on Google
+              </a>
+            </p>
+          </div>
         </div>
       </section>
 

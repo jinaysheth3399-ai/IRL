@@ -1,7 +1,23 @@
 import type { PriceFrom } from '@/lib/destinations';
 
-/** Hand-edited when the owner re-quotes. One string, every surface. */
-export const PRICES_UPDATED = 'August 2026';
+/**
+ * How long the published from-prices hold. Hand-edited when the owner re-quotes.
+ * One date drives every surface: the stamp on each trip, the footnotes under
+ * the trip lists, the announcement bar and the offers' priceValidUntil.
+ * Owner-set 2026-10-03: every from-price holds until the end of October 2026.
+ */
+export const PRICES_VALID_UNTIL = '2026-10-31';
+
+const MONTHS = [
+  'January', 'February', 'March', 'April', 'May', 'June',
+  'July', 'August', 'September', 'October', 'November', 'December',
+];
+
+/** '2026-10-31' becomes '31 October 2026'. No locale data, so build and browser agree. */
+export const PRICES_VALID_UNTIL_LABEL = (() => {
+  const [y, m, d] = PRICES_VALID_UNTIL.split('-').map(Number);
+  return `${d} ${MONTHS[m - 1]} ${y}`;
+})();
 
 /**
  * The caveat that keeps a "from" rate honest. It ships on every priced page,

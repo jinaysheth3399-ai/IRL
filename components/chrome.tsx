@@ -40,7 +40,7 @@ export function Footer() {
             <h3>Visit us</h3>
             <p>{site.address}</p>
             <p style={{ marginTop: '0.4rem' }}>
-              <a href={`https://maps.google.com/?q=${encodeURIComponent(site.mapsQuery)}`} target="_blank" rel="noopener noreferrer">
+              <a href={site.google.profile} target="_blank" rel="noopener noreferrer">
                 Open in Google Maps
               </a>
             </p>

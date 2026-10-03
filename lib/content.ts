@@ -1,7 +1,11 @@
 // Shared page content. Copy of record supplied by the owner (2026-08-08), prices removed site-wide.
 
+import { PRICES_VALID_UNTIL_LABEL } from '@/lib/price';
+
 export const announcements = [
-  'Planning a Diwali trip? Prices go up in October. Book early.',
+  // Reads the same date as the price stamps, so the bar can never promise a
+  // different deadline from the prices underneath it.
+  `Planning a Diwali trip? Prices are valid till ${PRICES_VALID_UNTIL_LABEL}. Book early.`,
   'Office in Kolhapur. Walk in any day, 10 am to 7 pm.',
 ];
 

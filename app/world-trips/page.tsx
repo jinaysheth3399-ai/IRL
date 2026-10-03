@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { TripCard, PlanTripButton } from '@/components/ui';
 import { worldTrips } from '@/lib/destinations';
-import { fare, PRICES_UPDATED } from '@/lib/price';
+import { fare, PRICES_VALID_UNTIL_LABEL } from '@/lib/price';
 
 export const metadata: Metadata = {
   title: 'International Tour Packages from Kolhapur',
@@ -40,7 +40,7 @@ export default function WorldTripsPage() {
               />
             ))}
           </div>
-          <p className="fare-footnote">From prices are group rates. Prices updated {PRICES_UPDATED}.</p>
+          <p className="fare-footnote">From prices are group rates, valid till {PRICES_VALID_UNTIL_LABEL}.</p>
         </div>
       </section>
 

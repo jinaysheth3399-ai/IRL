@@ -90,11 +90,13 @@ export default function ContactPage() {
             <i className="corner tr" aria-hidden="true" />
             <i className="corner bl" aria-hidden="true" />
             <i className="corner br" aria-hidden="true" />
+            {/* The listing itself, not an address search: Google's own card in the
+                top-left now carries the name, address, rating and directions, so
+                nothing is laid over it. */}
             <div className="frame">
-              <span className="map-cover">IRL office · Station Road, Kolhapur</span>
               <iframe
-                src={`https://maps.google.com/maps?q=${encodeURIComponent(site.mapsQuery)}&output=embed&iwloc=near`}
-                title="IRL office on Google Maps"
+                src={site.google.embed}
+                title="In Real Life on Google Maps"
                 style={{ border: 0, display: 'block', width: '100%', height: 380 }}
                 loading="lazy"
               />

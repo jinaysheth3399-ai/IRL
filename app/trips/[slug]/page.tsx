@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { PhotoPrint, PlanTripButton, SectionHead, TripCard, IconCheck, IconMinus, IconChevron } from '@/components/ui';
 import { destinations, getDestination, indiaTrips, worldTrips, waMessageFor } from '@/lib/destinations';
-import { fare, GROUP_NOTE, PRICES_UPDATED } from '@/lib/price';
-import { siteUrl } from '@/lib/site';
+import { fare, GROUP_NOTE, PRICES_VALID_UNTIL, PRICES_VALID_UNTIL_LABEL } from '@/lib/price';
+import { site, siteUrl } from '@/lib/site';
 
 // Literal backslash for the JSON-LD escape; kept out of string literals so no
 // build step can eat it.
@@ -76,13 +76,16 @@ export default async function TripPage({ params }: { params: Promise<{ slug: str
           : `${d.heroLine} Exact price on WhatsApp.`,
         image: `${siteUrl}${d.photo}`,
         url: pageUrl,
-        brand: { '@type': 'Brand', name: 'IRL - In Real Life' },
+        brand: { '@type': 'Brand', name: site.businessName },
         ...(d.priceFrom
           ? {
               offers: {
                 '@type': 'AggregateOffer',
                 lowPrice: Number(d.priceFrom.amount.replace(/,/g, '')),
                 priceCurrency: d.priceFrom.currency,
+                // The same date the visible stamp prints, so the markup can never
+                // claim a price is current after the page says it has lapsed.
+                priceValidUntil: PRICES_VALID_UNTIL,
                 availability: 'https://schema.org/InStock',
                 url: pageUrl,
               },
@@ -171,7 +174,7 @@ export default async function TripPage({ params }: { params: Promise<{ slug: str
                   <IconMinus />
                   <span>Flights not included</span>
                 </span>
-                <span className="fare-stamp">Prices updated {PRICES_UPDATED}</span>
+                <span className="fare-stamp">Valid till {PRICES_VALID_UNTIL_LABEL}</span>
               </p>
             ) : null}
           </div>
@@ -322,7 +325,7 @@ export default async function TripPage({ params }: { params: Promise<{ slug: str
               />
             ))}
           </div>
-          <p className="fare-footnote">From prices are group rates. Prices updated {PRICES_UPDATED}.</p>
+          <p className="fare-footnote">From prices are group rates, valid till {PRICES_VALID_UNTIL_LABEL}.</p>
         </div>
       </section>
 
