@@ -66,11 +66,16 @@ export function Header() {
           </nav>
 
           <div className="bar-actions">
+            {/* On phones the "Chat With Us" text is hidden and only the icon
+                shows, so the link needs a name of its own for screen readers.
+                It starts with the visible words, so speech users can still say
+                "Chat with us" to press it. */}
             <a
               className="btn btn-wa nav-wa"
               href={waLink(defaultWaMessage)}
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Chat with us on WhatsApp"
             >
               <IconWhatsApp size={18} />
               <span className="nav-wa-label">Chat With Us</span>
